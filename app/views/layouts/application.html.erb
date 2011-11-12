@@ -6,6 +6,12 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+
+<% if @user_id %>
+Logged in!
+<% else %>
+Not logged in!
+<% end %>
 <body>
 
 <%= yield %>

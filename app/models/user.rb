@@ -21,7 +21,7 @@ class User
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     begin
       response = site["/login"].get({:params => {"username"=>username, "password" => password}})
-      user = User.new(:username =>username, :password => JSON.parse(response)["objectId"])
+      user = User.new(:username =>username, :user_id => JSON.parse(response)["objectId"])
     rescue Exception
       false
     end
