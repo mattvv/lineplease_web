@@ -24,17 +24,11 @@
 </head>
 <body id="page1">
 <header>
-  <div class="bg2">
+  <div class="bg1">
     <%= render "layouts/header" %>
-      </div>
+  </div>
 </header>
-
-<section id="content">
-  <div class="container_12">
-        <%= yield %>
-      </div>
-</section>
-
+<%= yield %>
 <%= render "layouts/footer" %>
 </body>
 </html>

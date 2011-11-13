@@ -1,0 +1,23 @@
+<!-- footer -->
+<footer>
+  <div class="container_12">
+    <div class="wrapper">
+      <ul class="menu">
+        <li><a href="/#home" class="active">Home</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/#faq">Feedback</a></li>
+        <% if @current_user %>
+            <li><%= link_to "Scripts", scripts_path %></li>
+            <li class="last"><%= link_to "Logout #{@current_user.username}", "/logout" %></li>
+        <% else %>
+            <li><%= link_to "Login", "/login" %></li>
+            <li class="last"><%= link_to "Sign up", new_user_path %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="foot-text">&copy; Copyright 2011 Line Please</div>
+    <!-- {%FOOTER_LINK} -->
+  </div>
+
+</footer>
+<script type="text/javascript"> Cufon.now(); </script>

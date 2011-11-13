@@ -17,6 +17,7 @@ class ScriptsController < ApplicationController
 
   def show
     @script = params[:id]
+    @name = params[:name]
     @lines = Script.lines(@script)
   end
 

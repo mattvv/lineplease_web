@@ -1,0 +1,3 @@
+Cufon.replace('.sf-menu > li > a, .text, .link1, .menu a, .title4, .text1, .link3, .buttons-wrapper1, .link10, #back', { fontFamily: 'Maven Pro Medium' , hover:true });
+Cufon.replace('.title1 a, .title3', { fontFamily: 'Maven Pro' , hover:true });
+Cufon.replace('.data, .title, h2, .title2, .data1, .absolute, .absolute1, .absolute2, .absolute3, .title5, .link5 ', { fontFamily: 'Playfair Display Regular' , hover:true });

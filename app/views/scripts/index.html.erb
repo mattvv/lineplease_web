@@ -1,15 +1,18 @@
+<p>
+<h2>Scripts</h2>
 <br/>
 <% @scripts.each do |script| %>
-    <%= link_to script["name"], script_path(script["objectId"]) %> | <%= link_to "destroy", script_path(script["objectId"]), :method => :delete %><br/>
+    <%= link_to script["name"], script_path(script["objectId"]) + "?name=#{script["name"]}" %> | <%= link_to "destroy", script_path(script["objectId"]), :method => :delete %><br/>
     <br/>
 <% end %>
 
-<h2>Add Script</h2>
+<h2>Add Script</h2><br/>
 
 <%= form_tag scripts_path do %>
-  <div class="field">
-    <%= label_tag :name %>
-    <%= text_field_tag :name %>
-  </div>
-  <div class="actions"><%= submit_tag "Add Script" %></div>
+    <div class="field">
+      <%= label_tag :name %>
+      <%= text_field_tag :name %>
+    </div>
+    <div class="actions"><%= submit_tag "Add Script" %></div>
 <% end %>
+</p>
