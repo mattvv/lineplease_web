@@ -1,3 +1,4 @@
+require "digest/sha1"
 class User
   attr_accessor :user_id, :username
 
@@ -21,8 +22,10 @@ class User
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     begin
       response = site["/login"].get({:params => {"username"=>username, "password" => password}})
-      user = User.new(:username =>username, :user_id => JSON.parse(response)["objectId"])
-    rescue Exception
+      #user = User.new(:username =>username, :user_id => )
+      session_id = Digest::SHA1.hexdigest(Time.now.to_s + rand(12341234).to_s)[1..10]
+      Session.create(:session_id => session_id, :username => username, :user_id => JSON.parse(response)["objectId"])
+    rescue Exception => e
       false
     end
   end

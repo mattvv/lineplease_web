@@ -3,10 +3,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.login(params[:username], params[:password])
-    if user
-      session[:user_id] = user.get_user_id
-      session[:username] = user.get_username
+    us = User.login(params[:username], params[:password])
+    if us
+      session[:user_id] = us
       #TODO: Create a session ID in models
       redirect_to root_url, :notice => "Logged in!"
     else
@@ -18,7 +17,6 @@ class SessionsController < ApplicationController
   def destroy
     #TODO: Delete Session from models
     session[:user_id] = nil
-    session[:username] = nil
     redirect_to root_url, :notice => "Logged out!"
   end
 end

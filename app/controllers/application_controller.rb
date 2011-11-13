@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @user_id = session[:user_id] if session[:user_id]
+    @current_user = session[:user_id] if session[:user_id]
   end
 
   helper_method :current_user
