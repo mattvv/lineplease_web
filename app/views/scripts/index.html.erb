@@ -10,8 +10,7 @@
 
 <%= form_tag scripts_path do %>
     <div class="field">
-      <%= label_tag :name %>
-      <%= text_field_tag :name %>
+      <%= text_field_tag :name, nil, :class => "defaultText", :title => "Script Name" %>
     </div>
     <div class="actions"><%= submit_tag "Add Script" %></div>
 <% end %>

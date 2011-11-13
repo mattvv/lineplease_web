@@ -14,12 +14,10 @@
 <%= form_tag scripts_path do %>
     <%= hidden_field_tag :id, @script %>
     <div class="field">
-      <%= label_tag :character %>
-      <%= text_field_tag :character %>
+      <%= text_field_tag :character, nil, :class => "defaultText", :title => "Character" %>
     </div>
     <div class="field">
-      <%= label_tag :line %>
-      <%= text_area_tag :line %>
+      <%= text_area_tag :line, nil, :class => "defaultText", :title => "Line" %>
     </div>
     <div class="actions"><%= submit_tag "Add Line" %></div>
 <% end %>

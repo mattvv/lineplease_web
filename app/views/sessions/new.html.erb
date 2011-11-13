@@ -3,12 +3,10 @@
 
 <%= form_tag sessions_path do %>
     <div class="field">
-      <%= label_tag :username %>
-      <%= text_field_tag :username, params[:username] %>
+      <%= text_field_tag :username, params[:username], :class => "defaultText", :title => "Username" %>
     </div>
     <div class="field">
-      <%= label_tag :password %>
-      <%= password_field_tag :password, params[:password] %>
+      <%= password_field_tag :password, params[:password], :class => "defaultText", :title => "Password" %>
     </div>
     <div class="actions"><%= submit_tag "Log in" %></div>
 <% end %>
