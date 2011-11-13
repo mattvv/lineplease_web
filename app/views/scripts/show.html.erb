@@ -4,3 +4,18 @@
     Line:<%= line["line"] %> <%= %><br/>
     <br/>
 <% end %>
+
+<h2>Add Line</h2>
+
+<%= form_tag scripts_path do %>
+    <%= hidden_field_tag :id, @script %>
+  <div class="field">
+    <%= label_tag :character %>
+    <%= text_field_tag :character %>
+  </div>
+  <div class="field">
+    <%= label_tag :line %>
+    <%= text_area_tag :line %>
+  </div>
+  <div class="actions"><%= submit_tag "Add Line" %></div>
+<% end %>

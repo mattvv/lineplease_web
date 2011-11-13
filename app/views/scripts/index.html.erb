@@ -3,3 +3,13 @@
     <%= link_to script["name"], script_path(script["objectId"]) %><br/>
     <br/>
 <% end %>
+
+<h2>Add Script</h2>
+
+<%= form_tag scripts_path do %>
+  <div class="field">
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+  </div>
+  <div class="actions"><%= submit_tag "Add Script" %></div>
+<% end %>
