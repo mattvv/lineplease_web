@@ -1,7 +1,5 @@
 <br/>
 <% @scripts.each do |script| %>
-    Name: <%= script["name"] %><br/>
-    Username:<%= script["username"] %><br/>
-    ID:<%= script["objectId"] %><br/>
+    <%= link_to script["name"], script_path(script["objectId"]) %><br/>
     <br/>
 <% end %>

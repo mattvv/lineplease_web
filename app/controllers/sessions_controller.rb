@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if us
       session[:user_id] = us
       #TODO: Create a session ID in models
-      redirect_to root_url, :notice => "Logged in!"
+      redirect_to scripts_url, :notice => "Logged in!"
     else
       flash.now.alert = "Invalid user or password"
       render "new"

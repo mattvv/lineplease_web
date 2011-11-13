@@ -1,9 +1,8 @@
 class ScriptsController < ApplicationController
+  before_filter :require_user
+
   def index
-    #todo: get this from current_user
-    username = session[:username]
-    #endtodo
-    @scripts = Script.scripts(username)
+    @scripts = Script.scripts(@current_user.username)
   end
 
   def show
