@@ -5,8 +5,15 @@ class UsersController < ApplicationController
 
   def create
     if User.sign_up(params[:username], params[:password], params[:email])
-      #TODO: Login&Redirect
-      redirect_to root_url, :notice => "Signed up!"
+      us = User.login(params[:username], params[:password])
+      if us
+        session[:user_id] = us
+        #TODO: Create a session ID in models
+        redirect_to scripts_url, :notice => "Signed up"
+      else
+        flash.now.alert = "Invalid user or password"
+        render "new"
+      end
     else
       render "new"
     end
