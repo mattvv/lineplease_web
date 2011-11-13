@@ -19,4 +19,14 @@ class ScriptsController < ApplicationController
     @script = params[:id]
     @lines = Script.lines(@script)
   end
+
+  def destroy
+    unless params[:line_id].blank?
+      Script.remove_line(params[:line_id])
+      redirect_to script_path(params[:id])
+    else
+      Script.remove_script(params[:id])
+      redirect_to scripts_path
+    end
+  end
 end

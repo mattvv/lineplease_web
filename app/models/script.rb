@@ -38,4 +38,24 @@ class Script
       false
     end
   end
+
+  def self.remove_script(script_id)
+    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
+    begin
+      site["/classes/Script/#{script_id}"].delete
+      true
+    rescue Exception
+      false
+    end
+  end
+
+  def self.remove_line(line_id)
+    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
+    begin
+      site["/classes/Line/#{line_id}"].delete
+      true
+    rescue Exception
+      false
+    end
+  end
 end

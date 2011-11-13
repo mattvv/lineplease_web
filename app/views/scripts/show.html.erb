@@ -1,7 +1,8 @@
 <br/>
 <% @lines.each do |line| %>
     Character: <%= line["character"] %><br/>
-    Line:<%= line["line"] %> <%= %><br/>
+    Line:<%= line["line"] %> <%= %>
+    <%= link_to "destroy", script_path(line["scriptId"]) + "?line_id=#{line["objectId"]}", :method => :delete %><br/>
     <br/>
 <% end %>
 
