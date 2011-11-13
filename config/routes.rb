@@ -5,5 +5,6 @@ Lineplease::Application.routes.draw do
   root :to => "users#new"
   resources :users
   resources :sessions
+  resources :scripts
   get "secret" => "secret#index"
 end
