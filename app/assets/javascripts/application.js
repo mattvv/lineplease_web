@@ -7,8 +7,8 @@
 //= require jquery-1.6.4.min
 //= require jquery_ujs
 //= require ff_cash
-//= require cufon-replace
 //= require cufon-yui
+//= require cufon-replace
 //= require easyTooltip
 //= require superfish
 //= require jquery-faded
