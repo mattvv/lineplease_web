@@ -4,6 +4,12 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery
+//= require jquery-1.6.4.min
 //= require jquery_ujs
+//= require ff_cash
+//= require cufon-replace
+//= require cufon-yui
+//= require easyTooltip
+//= require superfish
+//= require jquery-faded
 //= require_tree .
