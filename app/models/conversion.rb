@@ -40,7 +40,7 @@ class Conversion < ActiveRecord::Base
 
     script_name = JSON.parse(response)["results"].first["name"]
 
-    script = Script.addScript(script_name, username)
+    script = Script.add_script(script_name, username)
 
     count = 0
     p "Adding lines to Parse"

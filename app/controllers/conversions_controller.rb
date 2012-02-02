@@ -16,8 +16,7 @@ class ConversionsController < ApplicationController
       response = site["/classes/Conversion"].post({"name"=>params[:script], "file" => {"name" => url, "__type" => "File"}}.to_json, :content_type => 'application/json', :accept => :json)
       Resque.enqueue(Conversion, JSON.parse(response)["objectId"], @current_user.username)
     rescue Exception => e
-      e.message
-      false
+      flash[:message] = e.message
     end
   end
 
