@@ -63,7 +63,18 @@ class Conversion < ActiveRecord::Base
         characters << character[0, character.length-1] unless character == ""
     end
 
-    return characters, lines
+    script_name = JSON.parse(response)["results"].first["name"]
+
+    script = Script.addScript(script_name, username)
+
+    count = 0
+    p "Adding lines to Parse"
+    characters.each do |char|
+      line = lines[count]
+      Script.add_line(script, char, line)
+      count = count + 1
+    end
+    p "Added Lines"
   end
 end
 
