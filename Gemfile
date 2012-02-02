@@ -7,7 +7,8 @@ gem 'rails', '3.1.1'
 
 gem 'rest-client'
 gem 'docsplit'
-gem 'pg'
+#gem 'pg'
+gem 'mysql' #todo: setup postgres for local dev
 
 # Gems used only for assets and not required
 # in production environments by default.
