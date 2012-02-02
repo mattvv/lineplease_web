@@ -8,6 +8,7 @@ gem 'rails', '3.1.1'
 gem 'mysql'
 gem 'pg'
 gem 'rest-client'
+gem 'docsplit'
 
 # Gems used only for assets and not required
 # in production environments by default.
