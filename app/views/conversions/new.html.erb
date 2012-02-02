@@ -1,5 +1,4 @@
-LOL
-<%= form_tag conversions_path, :class => "center" do %>
+<%= form_tag conversions_path, :class => "center", :multipart => true do %>
    <div class="field">
       <%= text_field_tag :script, nil, :class => "defaultText", :title => "Script Name" %>
     </div>
@@ -8,4 +7,3 @@ LOL
     </div>
     <div class="actions"><%= submit_tag "Convert Script" %></div>
 <% end %>
-CATS

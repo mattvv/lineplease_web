@@ -6,8 +6,19 @@ class ConversionsController < ApplicationController
   end
 
   def create
-    @file = params[:file].content_type
-    puts "content type: #{@file}"
+    file = params[:file]
+    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
+
+    #upload the file to parse!
+    begin
+      file_response = site["/files/#{file.original_filename}"].post file.tempfile, :content_type => file.content_type#, :accept => :json)
+      url = JSON.parse(file_response)["url"]
+      response = site["/classes/Conversion"].post({"name"=>params[:script], "file" => {"name" => url, "__type" => "File"}}.to_json, :content_type => 'application/json', :accept => :json)
+      !JSON.parse(response)["objectId"].blank?
+    rescue Exception => e
+      e.message
+      false
+    end
   end
 
 
