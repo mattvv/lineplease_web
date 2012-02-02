@@ -47,6 +47,7 @@ class Conversion < ActiveRecord::Base
     characters.each do |char|
       line = lines[count]
       Script.add_line(script, char, line)
+      p "Added line to script #{script}, #{char}, #{line}"
       count = count + 1
     end
     p "Added Lines"
