@@ -28,21 +28,26 @@ class Conversion < ActiveRecord::Base
 
     p "Done"
     p "Converting script to Lines/Characters"
-    Dir.chdir("/opt/scripts/" + shortname[0, shortname.length-4])
-    text = ""
-    textarray = []
-    pages = 0
-    Dir.glob("*.{txt}").each do |filename|
-      page = File.open(filename, 'rb')
-      #todo fix the page extraction here:
-      textarray[pages] << page.read
-      page.close
-      pages = pages + 1
-    end
 
-    until pages == 0
-      text << textarray[pages]
-      pages = pages - 1
+    begin
+      Dir.chdir("/opt/scripts/" + shortname[0, shortname.length-4])
+      text = ""
+      textarray = []
+      pages = 0
+      Dir.glob("*.{txt}").each do |filename|
+        page = File.open(filename, 'rb')
+        #todo fix the page extraction here:
+        textarray[pages] << page.read
+        page.close
+        pages = pages + 1
+      end
+
+      until pages == 0
+        text << textarray[pages]
+        pages = pages - 1
+      end
+    rescue Exception => e
+      p e.message
     end
 
     p text
