@@ -52,20 +52,20 @@ class Conversion < ActiveRecord::Base
 
     count = 0
 
-    characters.each do
-      p characters[count]
-      p lines[count]
-      count = count + 1
-    end
-
-    #p "Adding lines to Parse"
-    #characters.each do |char|
-    #  line = lines[count]
-    #  Script.add_line(script, char, line)
-    #  p "Added line to script #{script}, #{char}, #{line}"
+    #characters.each do
+    #  p characters[count]
+    #  p lines[count]
     #  count = count + 1
     #end
-    #p "Added Lines"
+
+    p "Adding lines to Parse"
+    characters.each do |char|
+      line = lines[count]
+      Script.add_line(script, char, line)
+      p "Added line to script #{script}, #{char}, #{line}"
+      count = count + 1
+    end
+    p "Added Lines"
 
   end
 
@@ -79,7 +79,7 @@ class Conversion < ActiveRecord::Base
       characters << char unless char == "IN" or char.size <= 2
       until matched[2] == ""
         matched = matched[2].partition(regex)
-          lines << matched[0].strip.split("\n\n").first unless characters.size == 0
+          lines << clean_line(matched[0]) unless characters.size == 0
           character = matched[1].strip
           characters << clean_character(character)
       end
@@ -90,6 +90,12 @@ class Conversion < ActiveRecord::Base
     def self.clean_character(character)
       char = /[A-Z]{2,}/.match(character)
       char.try(:to_s)
+    end
+
+    def self.clean_line(line)
+      line.strip.split("\n\n").first
+      line.gsub!(/\([^)]*\)/, "")
+      line[1, line.length] if line[0, 1] == "\n"
     end
   end
 
