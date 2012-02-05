@@ -98,6 +98,7 @@ class Conversion < ActiveRecord::Base
       line = line.strip
       line = line.gsub(/\([^)]*\)/, "")
       line = line[1, line.length] if line[0, 1] == "\n"
+      line = " " if line.nil?
       line
     end
   end
