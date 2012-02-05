@@ -36,8 +36,11 @@ class Conversion < ActiveRecord::Base
     p "parsing the script now"
 
     #try matching with "CHARACTER:"
-    characters, lines = ScriptParser.fill_lines(text, /[A-Z]+([ ]|[-]|[:]|[.])+[\n]/)
-
+    begin
+      characters, lines = ScriptParser.fill_lines(text, /[A-Z]+([ ]|[-]|[:]|[.])+[\n]/)
+    rescue Exception => e
+      p e.message
+    end
     script_name = JSON.parse(response)["results"].first["name"]
 
     #script = Script.add_script_return(script_name, username)
