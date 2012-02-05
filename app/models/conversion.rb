@@ -47,10 +47,10 @@ class Conversion < ActiveRecord::Base
         pages = pages + 1
       end
 
-      until pages == 0
+      until pages == -1
+        pages = pages - 1
         puts "putting page into text #{pages}"
         text << pagesarray[pages]
-        pages = pages - 1
       end
     rescue Exception => e
       p e.message
