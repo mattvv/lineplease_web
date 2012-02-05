@@ -33,15 +33,7 @@ class Conversion < ActiveRecord::Base
 
 
     #try matching with "CHARACTER:"
-    characters, lines = ScriptParser.fill_lines(text, /[A-Z]+:/)
-    if characters.size <= 1
-      #if there's no characters, try matching with "CHARACTER."
-      characters, lines = ScriptParser.fill_lines(text, /[A-Z]+[.]/)
-      if characters.size <= 1
-        #if there's no characters still, try matching with "CHARACTER"
-        characters, lines = ScriptPaser.fill_lines(text, /[A-Z]+[\n]/)
-      end
-    end
+    characters, lines = ScriptParser.fill_lines(text, /[A-Z]+([ ]|[-]|[:]|[.])+[\n]/)
 
     script_name = JSON.parse(response)["results"].first["name"]
 
