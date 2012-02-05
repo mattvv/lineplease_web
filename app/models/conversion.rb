@@ -48,7 +48,7 @@ class Conversion < ActiveRecord::Base
     end
     script_name = JSON.parse(response)["results"].first["name"]
 
-    #script = Script.add_script_return(script_name, username)
+    script = Script.add_script_return(script_name, username)
 
     count = 0
 
