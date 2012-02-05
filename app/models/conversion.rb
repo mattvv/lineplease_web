@@ -31,6 +31,7 @@ class Conversion < ActiveRecord::Base
       page.close
     end
 
+
     #try matching with "CHARACTER:"
     characters, lines = ScriptParser.fill_lines(text, /[A-Z]+:/)
     if characters.size <= 1
@@ -40,36 +41,54 @@ class Conversion < ActiveRecord::Base
 
     script_name = JSON.parse(response)["results"].first["name"]
 
-    script = Script.add_script_return(script_name, username)
+    #script = Script.add_script_return(script_name, username)
 
     count = 0
-    p "Adding lines to Parse"
-    characters.each do |char|
-      line = lines[count]
-      Script.add_line(script, char, line)
-      p "Added line to script #{script}, #{char}, #{line}"
+
+    p text
+
+    characters.each do
+      p characters[count]
+      p lines[count]
       count = count + 1
     end
-    p "Added Lines"
+
+    #p "Adding lines to Parse"
+    #characters.each do |char|
+    #  line = lines[count]
+    #  Script.add_line(script, char, line)
+    #  p "Added line to script #{script}, #{char}, #{line}"
+    #  count = count + 1
+    #end
+    #p "Added Lines"
 
   end
 
   class ScriptParser
-  def self.fill_lines(text, regex)
-    characters = []
-    lines = []
+    def self.fill_lines(text, regex)
+      characters = []
+      lines = []
 
-    matched = text.partition(regex)
-    characters << matched[1] unless matched[1] == "IN:" or matched[1].size <= 2
-    until matched[2] == ""
-      matched = matched[2].partition(regex)
-        lines << matched[0].strip.split("\n\n").first unless characters.size == 0
-        character = matched[1].strip
-        characters << character[0, character.length-1] unless character == ""
+      matched = text.partition(regex)
+      characters << clean_character(matched[1]) unless matched[1] == "IN:" or matched[1].size <= 2
+      until matched[2] == ""
+        matched = matched[2].partition(regex)
+          lines << matched[0].strip.split("\n\n").first unless characters.size == 0
+          character = matched[1].strip
+          characters << clean_character(character)
+      end
+
+      return characters, lines
     end
 
-    return characters, lines
+    def self.clean_character(character)
+      switcher = character[character.length-1, character.length]
+      if switcher == ":" or switcher == "."
+        character[0, character.length-1]
+      else
+        character
+      end
+    end
   end
-end
 
 end
