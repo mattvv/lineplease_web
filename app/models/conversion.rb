@@ -37,7 +37,8 @@ class Conversion < ActiveRecord::Base
       Dir.glob("*.{txt}").each do |filename|
         page = File.open(filename, 'rb')
         #todo fix the page extraction here:
-        textarray[pages] = page.read
+        actual_page << page.read
+        textarray[pages] = actual_page
         page.close
         pages = pages + 1
       end
@@ -48,6 +49,7 @@ class Conversion < ActiveRecord::Base
       end
     rescue Exception => e
       p e.message
+      p e.backtracke
     end
 
     p text
