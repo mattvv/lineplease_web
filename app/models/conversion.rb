@@ -70,7 +70,8 @@ class Conversion < ActiveRecord::Base
       lines = []
 
       matched = text.partition(regex)
-      characters << clean_character(matched[1]) unless matched[1] == "IN:" or matched[1].size <= 2
+      char = clean_character(matched[1])
+      characters << char unless char == "IN" or char.size <= 2
       until matched[2] == ""
         matched = matched[2].partition(regex)
           lines << matched[0].strip.split("\n\n").first unless characters.size == 0
@@ -82,7 +83,8 @@ class Conversion < ActiveRecord::Base
     end
 
     def self.clean_character(character)
-      /[A-Z]{2,}/.match(character).string
+      char = /[A-Z]{2,}/.match(character)
+      char.try(:string)
     end
   end
 
