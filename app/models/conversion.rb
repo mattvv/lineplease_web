@@ -19,7 +19,12 @@ class Conversion < ActiveRecord::Base
     #puts text in array
 
     p "Extracting text..."
-    text = Docsplit.extract_text(pathname, :pages => 1..5, :output => "/opt/scripts/" + shortname[0, shortname.length-4])
+
+    begin
+      text = Docsplit.extract_text(pathname, :pages => 1..5, :output => "/opt/scripts/" + shortname[0, shortname.length-4])
+    rescue Exception => e
+      p e.message
+    end
 
     p "Done"
     p "Converting script to Lines/Characters"
@@ -37,7 +42,7 @@ class Conversion < ActiveRecord::Base
 
     #try matching with "CHARACTER:"
     begin
-      characters, lines = ScriptParser.fill_lines(text, /[A-Z]+([ ]|[-]|[:]|[.])+[\n]/)
+      characters, lines = ScriptParser.fill_lines(text, /[A-Z]+([ ]|[-]|[:]|[.]|)+[\n]/)
     rescue Exception => e
       p e.message
     end
