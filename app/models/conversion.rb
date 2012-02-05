@@ -31,6 +31,9 @@ class Conversion < ActiveRecord::Base
       page.close
     end
 
+    p text
+
+    p "parsing the script now"
 
     #try matching with "CHARACTER:"
     characters, lines = ScriptParser.fill_lines(text, /[A-Z]+([ ]|[-]|[:]|[.])+[\n]/)
@@ -40,8 +43,6 @@ class Conversion < ActiveRecord::Base
     #script = Script.add_script_return(script_name, username)
 
     count = 0
-
-    p text
 
     characters.each do
       p characters[count]
