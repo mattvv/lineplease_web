@@ -78,12 +78,7 @@ class Conversion < ActiveRecord::Base
     end
 
     def self.clean_character(character)
-      switcher = character[character.length-1, character.length]
-      if switcher == ":" or switcher == "."
-        character[0, character.length-1]
-      else
-        character
-      end
+      /[A-Z]{2,}/.match(character).string
     end
   end
 
