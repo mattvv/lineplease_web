@@ -84,7 +84,7 @@ class Conversion < ActiveRecord::Base
 
     def self.clean_character(character)
       char = /[A-Z]{2,}/.match(character)
-      char.try(:string)
+      char.try(:to_s)
     end
   end
 
