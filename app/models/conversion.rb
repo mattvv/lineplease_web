@@ -30,10 +30,18 @@ class Conversion < ActiveRecord::Base
     p "Converting script to Lines/Characters"
     Dir.chdir("/opt/scripts/" + shortname[0, shortname.length-4])
     text = ""
+    textarray = []
+    page = 0
     Dir.glob("*.{txt}").each do |filename|
       page = File.open(filename, 'rb')
-      text << page.read
+      textarray[page] << page.read
       page.close
+      page = page + 1
+    end
+
+    until page == 0
+      text << textarray[page]
+      page = page - 1
     end
 
     p text
