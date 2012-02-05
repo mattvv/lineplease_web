@@ -61,8 +61,10 @@ class Conversion < ActiveRecord::Base
     p "Adding lines to Parse"
     characters.each do |char|
       line = lines[count]
-      Script.add_line(script, char, line)
-      p "Added line to script #{script}, #{char}, #{line}"
+      unless line.nil? or char.nil?
+        Script.add_line(script, char, line)
+        p "Added line to script #{script}, #{char}, #{line}"
+      end
       count = count + 1
     end
     p "Added Lines"
