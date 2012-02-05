@@ -31,17 +31,18 @@ class Conversion < ActiveRecord::Base
     Dir.chdir("/opt/scripts/" + shortname[0, shortname.length-4])
     text = ""
     textarray = []
-    page = 0
+    pages = 0
     Dir.glob("*.{txt}").each do |filename|
       page = File.open(filename, 'rb')
-      textarray[page] << page.read
+      #todo fix the page extraction here:
+      textarray[pages] << page.read
       page.close
-      page = page + 1
+      pages = pages + 1
     end
 
-    until page == 0
-      text << textarray[page]
-      page = page - 1
+    until pages == 0
+      text << textarray[pages]
+      pages = pages - 1
     end
 
     p text
