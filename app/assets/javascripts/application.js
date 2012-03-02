@@ -3,14 +3,13 @@
 // be included in the compiled file accessible from http://example.com/assets/application.js
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
-//
-//= require jquery-1.6.4.min
+//= require jquery
 //= require jquery_ujs
-//= require ff_cash
-//= require cufon-yui
-//= require cufon-replace
-//= require easyTooltip
-//= require superfish
-//= require jquery-faded
+//= require jquery_faded
+//= require twitter/bootstrap
 //= require facebook
 //= require_tree .
+
+$(document).ready(function() {
+  $('.dropdown-toggle').dropdown()
+});

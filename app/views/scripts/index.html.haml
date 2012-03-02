@@ -1,0 +1,38 @@
+%ul.breadcrumb
+  %li
+    = link_to "Scripts" ,scripts_path
+
+%legend.center Scripts
+%p
+  Manage all your Line Please scripts here! Add scripts and type in lines using your computer to practice on your smart phone!
+  %br/
+
+%br/
+- @scripts.each do |script|
+  %p
+    .dropdown.line.center
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
+        = script["name"]
+
+      %ul.center.dropdown-menu.center-menu{ :id => "#{script["objectId"]}"}
+        %li
+          %a{:href=>"#"}
+            = link_to script_path(script["objectId"]) + "?name=#{script["name"]}" do
+              %i.icon-film
+              View
+        %li.divider
+        %li
+          = link_to script_path(script["objectId"]), :method => :delete, :confirm => "Are you sure you want to delete this script?" do
+            %i.icon-trash
+            Delete
+%br/
+= form_tag scripts_path, :class => "well form-horizontal" do
+  %fieldset
+    %legend Add a Script
+    .control-group
+      = label_tag :name, "Script Name", :class => "control-label"
+      .controls
+        = text_field_tag :name
+    .form-actions
+      = submit_tag "Add Script", :class => "btn btn-primary"
+      = button_tag "Import Script", :class => "btn btn-inverse", :disabled => "disabled"

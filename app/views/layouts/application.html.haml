@@ -1,0 +1,67 @@
+!!!
+%html
+  %head
+    %title Line Please - It helps you learn your lines
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          =link_to "Line Please", root_path, :class => "brand"
+          .nav-collapse
+            %ul.nav
+              %li= link_to "Faq", faq_path
+              %li= link_to "Issues", "https://github.com/mattvv/lineplease/issues"
+              - if @current_user
+                %li= link_to "Scripts", scripts_path
+                %li= link_to "Logout", logout_path, :class => "logout"
+              - else
+                %li= link_to "Login", new_session_path
+                %li= link_to "Sign up", new_user_path
+    .container
+      .row
+        - unless @nosidebar
+          .span9= yield
+          .span3
+            %legend
+              Website Overhaul
+              %small Matt
+            %p The Line Please website has been totally revamped with a new style paving way for new features. You can now edit lines via the Line Please website, as well with your facebook account.
+            %p
+              We're also starting trials on our newest feature to import scripts. This is currently in a very limited alpha stage. Please contact us at
+              %a{:href => "mailto:alpha@lineplea.se"}alpha@lineplea.se
+              if you are interested in testing out script imports from .pdf and .doc
+            %legend
+              Issues Section Live
+              %small Matt
+            %p Now launched is the issues section. This is the quickest way to see the progress of new features or bugfixes in Line Please. If you find any problems with line please either web app or android, please submit an issue using the issues link.
+            %legend
+              iPhone 1.1 Released
+              %small Matt
+            %p Line Please iPhone received a large update! Included is various speed improvements as well as the ability to Edit Lines, Record Lines in your own voice and change the gender of lines.
+        - else
+          =yield
+      #fb-root
+      %footer.footer
+        %p.pull-right
+          %a{:href => "#"}Back to Top
+        %p
+          Designed and built with love by
+          %a{:href => "http://twitter.com/linepleaseapp"} Line Please
+          %br/
+          Please send us
+          %a{:href => "mailto:feedback@lineplea.se"}Feedback!
+          %br/
+          Follow to us on
+          %a{:href => "http://twitter.com/linepleaseapp"} Twitter
+          or
+          %a{:href => "http://facebook.com/linepleaseapp"} Facebook

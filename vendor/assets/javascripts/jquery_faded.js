@@ -1,6 +1,6 @@
 /*
  *	faded 0.3.1 - jQuery plugin
- *	written by Nathan Searles	
+ *	written by Nathan Searles
  *	http://nathansearles.com/faded/
  *
  *	Copyright (c) 2009 Nathan Searles (http://nathansearles.com/)
@@ -38,7 +38,7 @@ if(typeof jQuery != "undefined") {
 										var indices = new Array();
 										for (i=0;i<childCount;i++) { indices[indices.length] = i; }
 										indices = indices.sort(randOrd);
-										$.each(indices,function(j,k) { 
+										$.each(indices,function(j,k) {
 											var $child = $children.eq(k);
 											var $clone = $child.clone(true);
 											$clone.show().appendTo($this);
@@ -59,12 +59,12 @@ if(typeof jQuery != "undefined") {
 								autoplay = setInterval(function(){
 									animate("next");
 								},o.autoplay);
-							},o.autorestart);			
-						}				
-						$c.css({position:"relative"});			
+							},o.autorestart);
+						}
+						$c.css({position:"relative"});
 						$c.children().css({
 							position:"absolute",
-							top: 0, 
+							top: 0,
 							left: 0,
 							zIndex: 0,
 							display:"none"
@@ -82,7 +82,7 @@ if(typeof jQuery != "undefined") {
 							}
 							$("."+o.pagination+" li a:eq(0)",$t).parent().addClass("current");
 							$("."+o.pagination+" li a",$t).click(function(){
-								current = $("."+o.pagination+" li.current a",$t).attr("rel");									
+								current = $("."+o.pagination+" li.current a",$t).attr("rel");
 								clicked = $(this).attr("rel");
 								if (current != clicked) {animate("pagination",clicked,current);}
 								if(o.autoplay){pause();}
@@ -110,12 +110,12 @@ if(typeof jQuery != "undefined") {
 									if (o.autorestart) {
 										pause();
 									} else {
-										clearInterval(autoplay);	
+										clearInterval(autoplay);
 									}
 								}
 								return false;
-							});									
-						}			
+							});
+						}
 						if (o.autoplay) {
 							autoplay = setInterval(function(){
 								animate("next");
@@ -130,18 +130,18 @@ if(typeof jQuery != "undefined") {
 								if (o.autorestart) {
 									pause();
 								} else {
-									clearInterval(autoplay);	
+									clearInterval(autoplay);
 								}
 							}
 							return false;
-						});					
+						});
 						$("."+o.prevbtn,$t).click(function(){
 							animate("prev");
 							if(o.autoplay){
 								if (o.autorestart) {
 									pause();
 								} else {
-									clearInterval(autoplay);	
+									clearInterval(autoplay);
 								}
 							}
 							return false;
@@ -218,7 +218,7 @@ if(typeof jQuery != "undefined") {
 $(function(){
 	$("#faded").faded({
 		speed: 400,
-		crossfade: true,			
+		crossfade: true,
 		sequentialloading: true,
 		autopagination: true,
 		autoplay: 7000,

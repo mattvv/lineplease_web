@@ -1,0 +1,49 @@
+%ul.breadcrumb
+  %li
+    = link_to "Scripts" ,scripts_path
+    %span.divider >
+  %li= @name
+
+%p To play back your scripts, simply log in to Line Please on your smart phone, choose the script and hit play
+%legend.center= @name
+
+- @lines.each do |line|
+  %p.center
+    .dropdown.line.center
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
+        = line["character"].upcase
+        %br/
+        = line["line"]
+      %ul.center.dropdown-menu.center-menu{ :id => "#{line['objectId']}"}
+        %li
+          %a{:href=>"#"}
+            %i.icon-pencil
+            Edit
+        %li.divider
+        %li
+          = link_to script_path(line["scriptId"]) + "?line_id=#{line["objectId"]}", :method => :delete, :class => "lineDelete", :confirm => "Are you sure you want to delete this line?" do
+            %i.icon-trash
+            Delete
+    %br/
+
+= form_tag scripts_path, :class => "well form-horizontal" do
+  %fieldset
+    %legend Add line
+    = hidden_field_tag :id, @script
+    .control-group
+      = label_tag :character, "Character", :class => "control-label"
+      .controls
+        = text_field_tag :character
+    .control-group
+      = label_tag :line, "Line", :class => "control-label"
+      .controls
+        = text_area_tag :line
+    .control-group
+      = label_tag :gender, "Gender", :class => "control-label"
+      .controls
+        .btn-group{"data-toggle" => "buttons-radio"}
+          %button.btn.active.gender Female
+          %button.btn.gender Male
+    .form-actions
+      = submit_tag "Add Line", :class => "btn btn-primary"
+      = button_tag "Back to Scripts", :class => "btn btn-inverse", :id => "back-to-scripts"

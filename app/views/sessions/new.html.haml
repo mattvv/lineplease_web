@@ -1,0 +1,23 @@
+.row
+  .span4
+    = form_tag sessions_path, :class => "form-horizontal" do
+      %fieldset
+        %legend Login through Line Please
+        .control-group
+          = label_tag :username, "Username", :class => "control-label"
+          .controls
+            = text_field_tag :username, params[:username]
+        .control-group
+          = label_tag :password, "Password", :class => "control-label"
+          .controls
+            = password_field_tag :password, params[:password]
+        .form-actions
+          = button_tag "Log in", :class => "btn btn-primary"
+
+  .span4
+    %legend Login through Social
+    %p Login or signup through facebook.
+    %br/
+    %br/
+    .form-actions
+      %input.btn.btn-primary{:onclick => "javascript:facebookLogin()", :type => "button", :value => "Facebook Login"}

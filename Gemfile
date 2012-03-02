@@ -17,9 +17,10 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'twitter-bootstrap-rails'
 end
 
-
+gem 'haml'
 gem 'execjs'
 gem 'therubyracer'
 gem 'jquery-rails'

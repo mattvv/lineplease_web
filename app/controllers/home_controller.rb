@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
-  layout 'home'
   def index
-    @show_main = true
+    @nosidebar = true
+  end
+
+  def faq
   end
 end
