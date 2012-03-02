@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     #TODO: Delete Session from models
+    #TODO: Delete FB User Session
     session[:user_id] = nil
     redirect_to root_url, :notice => "Logged out!"
   end

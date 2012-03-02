@@ -8,8 +8,13 @@
     <div class="field">
       <%= password_field_tag :password, params[:password], :class => "defaultText", :title => "Password" %>
     </div>
-    <div class="actions"><%= submit_tag "Log in" %></div>
+    <div class="actions">
+      <%= submit_tag "Log in" %>
+    </div>
 <% end %>
+
+<input type="button" onclick="javascript:facebookLogin()" value="Facebook Login"></input>
 </p>
 
-Cookies <%= @facebook_cookies.inspect %>
+<script type="text/javascript">
+</script>

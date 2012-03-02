@@ -8,7 +8,7 @@
         <li><a href="https://github.com/mattvv/lineplease/issues">Issues</a></li>
         <% if @current_user %>
             <li><%= link_to "Scripts", scripts_path %></li>
-            <li class="last"><%= link_to "Logout #{@current_user.username}", "/logout", :class=>"active" %></li>
+            <li class="last"><%= link_to "Logout #{@current_user.username}", "/logout", :class=>"active logout" %></li>
         <% else %>
             <li><%= link_to "Login", "/login" %></li>
             <li class="last"><%= link_to "Sign up", new_user_path, :class=>"active"  %></li>

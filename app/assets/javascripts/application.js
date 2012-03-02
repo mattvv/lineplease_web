@@ -12,4 +12,5 @@
 //= require easyTooltip
 //= require superfish
 //= require jquery-faded
+//= require facebook
 //= require_tree .
