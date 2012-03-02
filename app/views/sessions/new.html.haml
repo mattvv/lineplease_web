@@ -6,11 +6,17 @@
         .control-group
           = label_tag :username, "Username", :class => "control-label"
           .controls
-            = text_field_tag :username, params[:username]
+            .input-prepend
+              %span.add-on
+                %i.icon-user
+              = text_field_tag :username, params[:username], :class => "span2", :id => "inputIcon"
         .control-group
           = label_tag :password, "Password", :class => "control-label"
           .controls
-            = password_field_tag :password, params[:password]
+            .input-prepend
+              %span.add-on
+                %i.icon-lock
+              = password_field_tag :password, params[:password], :class => "span2", :id => "inputIcon"
         .form-actions
           = button_tag "Log in", :class => "btn btn-primary"
 
