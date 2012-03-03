@@ -35,4 +35,9 @@
         = text_field_tag :name
     .form-actions
       = submit_tag "Add Script", :class => "btn btn-primary"
-      = button_tag "Import Script", :class => "btn btn-inverse", :disabled => "disabled"
+      = link_to "Import Script", "#", :class => "btn btn-inverse disabled", :id => "import-script"
+
+:javascript
+  $(document).ready(function() {
+    $('#import-script').popover({title: "Coming Soon", content: "Import scripts is currently in Alpha - If you would like to be a tester please email <a href=\"mailto:alpha@lineplea.se\">alpha@lineplea.se</a>"});
+  });
