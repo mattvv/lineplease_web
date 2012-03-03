@@ -28,6 +28,10 @@
                 %li= link_to "Login", new_session_path
                 %li= link_to "Sign up", new_user_path
     .container
+      - flash.each do |key, value|
+        %div{:class =>"alert alert-#{key}"}
+          = value
+          %a.close{"data-dismiss" => "alert", :href => "#"} x
       .row
         - unless @nosidebar
           .span9= yield

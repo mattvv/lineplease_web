@@ -9,6 +9,7 @@ Lineplease::Application.routes.draw do
   resources :scripts
   resources :home
   resources :conversions
+  resources :lines
 
   root :to => "home#index"
 end

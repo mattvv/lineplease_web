@@ -16,7 +16,7 @@
         = line["line"]
       %ul.center.dropdown-menu.center-menu{ :id => "#{line['objectId']}"}
         %li
-          %a{:href=>"#"}
+          %a{:href=>"#{line_path(line['objectId'])}"}
             %i.icon-pencil
             Edit
         %li.divider

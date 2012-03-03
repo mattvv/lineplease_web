@@ -9,6 +9,16 @@ class Script
     end
   end
 
+  def self.get_script(script_id)
+    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
+    begin
+      response = site["/classes/Script"].get({:params => {:order => "createdAt", :where => {"objectId" => script_id }.to_json}})
+      JSON.parse(response)["results"]
+    rescue Exception => e
+      false
+    end
+  end
+
   def self.lines(script_id)
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     begin

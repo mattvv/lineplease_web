@@ -1,0 +1,41 @@
+%ul.breadcrumb
+  %li
+    = link_to "Scripts" ,scripts_path
+    %span.divider >
+  %li
+    = link_to @script['name'], script_path(@script['objectId'])
+    %span.divider >
+  %li
+    Line
+
+= form_tag line_path(@line['objectId']), :method => "put", :class => "well form-horizontal" do
+  %fieldset
+    %legend Edit line
+    = hidden_field_tag :id, @line['objectId']
+    = hidden_field_tag :script_id, @script['objectId']
+    .control-group
+      = label_tag :character, "Character", :class => "control-label"
+      .controls
+        = text_field_tag :character, @line['character'], :class => "input-xlarge"
+    .control-group
+      = label_tag :line, "Line", :class => "control-label"
+      .controls
+        = text_area_tag :line, @line['line'], :class => "input-xlarge"
+    .control-group
+      = label_tag :gender, "Gender", :class => "control-label"
+      .controls
+        .btn-group{"data-toggle" => "buttons-radio"}
+          - if @line['gender'] == "female"
+            %button.btn.active.gender Female
+            %button.btn.gender Male
+          - else
+            %button.btn.gender Female
+            %button.btn.active.gender Male
+    - if @line['recorded'] == "yes"
+      .control-group
+        = label_tag :recording, "Delete Recording", :class => "control-label"
+        .controls
+          Coming Soon
+    .form-actions
+      = submit_tag "Edit Line", :class => "btn btn-primary"
+      = link_to "Back to Script", script_path(@script['objectId']), :class => "btn btn-inverse"
