@@ -16,7 +16,7 @@
     .control-group
       = label_tag :character, "Character", :class => "control-label"
       .controls
-        = text_field_tag :character, @line['character'], :class => "input-xlarge"
+        = text_field_tag :character, @line['character'], :class => "input-xlarge typeahead", "data-provide" => "typeahead"
     .control-group
       = label_tag :line, "Line", :class => "control-label"
       .controls
@@ -39,3 +39,9 @@
     .form-actions
       = submit_tag "Edit Line", :class => "btn btn-primary"
       = link_to "Back to Script", script_path(@script['objectId']), :class => "btn btn-inverse"
+
+:javascript
+  $(document).ready(function() {
+    var characters = #{array_or_string_for_javascript(@characters)};
+    $('.typeahead').typeahead({source: characters, items:5});
+  });

@@ -4,6 +4,12 @@ class LinesController < ApplicationController
   def show
     @line = Line.get_line(params[:id]).first
     @script = Script.get_script(@line['scriptId']).first
+    @lines = Script.lines(@line['scriptId'])
+    @characters = []
+    @lines.each do |line|
+      character = line['character'].upcase
+      @characters << character unless @characters.include?(character) or character.blank?
+    end
   end
 
   def update

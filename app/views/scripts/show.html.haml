@@ -5,6 +5,7 @@
   %li= @name
 
 %p To play back your scripts, simply log in to Line Please on your smart phone, choose the script and hit play
+
 %legend.center= @name
 
 - @lines.each do |line|
@@ -33,7 +34,7 @@
     .control-group
       = label_tag :character, "Character", :class => "control-label"
       .controls
-        = text_field_tag :character
+        = text_field_tag :character, nil, "data-provide" => "typeahead", :class => "typeahead"
     .control-group
       = label_tag :line, "Line", :class => "control-label"
       .controls
@@ -47,3 +48,8 @@
     .form-actions
       = submit_tag "Add Line", :class => "btn btn-primary"
       = button_tag "Back to Scripts", :class => "btn btn-inverse", :id => "back-to-scripts"
+:javascript
+  $(document).ready(function() {
+    var characters = #{array_or_string_for_javascript(@characters)};
+    $('.typeahead').typeahead({source: characters, items:5});
+  });

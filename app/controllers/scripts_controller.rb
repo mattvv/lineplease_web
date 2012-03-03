@@ -27,6 +27,12 @@ class ScriptsController < ApplicationController
     @script = params[:id]
     @name = params[:name]
     @lines = Script.lines(@script)
+
+    @characters = []
+    @lines.each do |line|
+      character = line['character'].upcase
+      @characters << character unless @characters.include?(character) or character.blank?
+    end
   end
 
   def destroy
