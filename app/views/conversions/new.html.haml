@@ -1,0 +1,18 @@
+= form_tag conversions_path, :class => "form-horizontal", :multipart => true do
+  %fieldset
+    %legend Convert a Script
+    %p
+      Note: Conversions can take a long time (Upwards of 30+minutes).
+      %br/
+      During Beta, File imports will be limited to 5 pages.
+    .control-group
+      = label_tag :script, "Script Name", :class => "control-label"
+      .controls
+        = text_field_tag :script
+    .control-group
+      = label_tag :file, "Script PDF or DOC", :class => "control-label"
+      .controls
+        = file_field_tag :file, :class => "input-file"
+    .form-actions
+      = submit_tag "Convert Script", :class => "btn btn-primary"
+      = link_to "Back", scripts_path, :class => "btn btn-inverse"
