@@ -14,7 +14,7 @@
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
         = line["character"].upcase
         %br/
-        = line["line"]
+        = simple_format line["line"]
       %ul.center.dropdown-menu.center-menu{ :id => "#{line['objectId']}"}
         %li
           %a{:href=>"#{line_path(line['objectId'])}"}
