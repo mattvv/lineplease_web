@@ -3,10 +3,18 @@ class ScriptsController < ApplicationController
 
   def create
     if params[:id]
-      Script.add_line(params[:id], params[:character], params[:line])
+      if Script.add_line(params[:id], params[:character], params[:line])
+        flash[:success] = "Added Line!"
+      else
+        flash[:error] = "Failed to Add Line"
+      end
       redirect_to script_path(params[:id])
     else
-      Script.add_script(params[:name], @current_user.username)
+      if Script.add_script(params[:name], @current_user.username)
+        flash[:success] = "Script #{params[:name]} Added"
+      else
+        flash[:error] = "Adding Script #{params[:name]} Failed"
+      end
       redirect_to scripts_path
     end
   end
@@ -23,10 +31,18 @@ class ScriptsController < ApplicationController
 
   def destroy
     unless params[:line_id].blank?
-      Script.remove_line(params[:line_id])
+      if Script.remove_line(params[:line_id])
+        flash[:success] = "Successfully Removed Line"
+      else
+        flash[:error] = "Failed to Remove Line"
+      end
       redirect_to script_path(params[:id])
     else
-      Script.remove_script(params[:id])
+      if Script.remove_script(params[:id])
+        flash[:success] = "Successfully Removed Script"
+      else
+        flash[:error] = "Failed to Remove Script"
+      end
       redirect_to scripts_path
     end
   end
