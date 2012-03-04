@@ -1,32 +1,32 @@
-.row
-  .span4
-    = form_tag users_path, :class => "form-horizontal" do
-      %fieldset
-        %legend Signup through Line Please
-        .control-group
-          = label_tag :username, "Username", :class => "control-label"
-          .controls
-            .input-prepend
-              %span.add-on
-                %i.icon-user
-              = text_field_tag :username, nil, :class => "span2", :id => "inputIcon"
-        .control-group
-          = label_tag :password, "Password", :class => "control-label"
-          .controls
-            .input-prepend
-              %span.add-on
-                %i.icon-lock
-              = password_field_tag :password, nil, :class => "span2", :id => "inputIcon"
-        .control-group
-          =label_tag :email, "Email", :class => "control-label"
-          .controls
-            .input-prepend
-              %span.add-on
-                %i.icon-envelope
-              = text_field_tag :email, nil, :class => "span2", :id => "inputIcon"
-        .form-actions
-          = submit_tag "Sign up", :class => "btn btn-primary"
-  .span4
-    %legend Signup through Social
-    %p Login or signup through facebook.
-    %input.btn.btn-primary{:onclick => "javascript:facebookLogin()", :type => "button", :value => "Facebook Signup"}
+.span8
+  = form_tag users_path, :class => "form-horizontal" do
+    %fieldset
+      %legend Signup through Line Please
+      .control-group
+        = label_tag :username, "Username", :class => "control-label"
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-user
+            = text_field_tag :username, nil, :class => "span2", :id => "inputIcon"
+            %p.help-block Tip: Username is case sensitive
+      .control-group
+        = label_tag :password, "Password", :class => "control-label"
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-lock
+            = password_field_tag :password, nil, :class => "span2", :id => "inputIcon"
+      .control-group
+        =label_tag :email, "Email", :class => "control-label"
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-envelope
+            = text_field_tag :email, nil, :class => "span2", :id => "inputIcon"
+      .form-actions
+        = submit_tag "Sign up", :class => "btn btn-primary"
+.span8
+  %legend Signup through Social
+  %p Login or signup through facebook.
+  %input.btn.btn-primary{:onclick => "javascript:facebookLogin()", :type => "button", :value => "Facebook Signup"}

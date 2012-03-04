@@ -1,29 +1,29 @@
-.row
-  .span4
-    = form_tag sessions_path, :class => "form-horizontal" do
-      %fieldset
-        %legend Login through Line Please
-        .control-group
-          = label_tag :username, "Username", :class => "control-label"
-          .controls
-            .input-prepend
-              %span.add-on
-                %i.icon-user
-              = text_field_tag :username, params[:username], :class => "span2", :id => "inputIcon"
-        .control-group
-          = label_tag :password, "Password", :class => "control-label"
-          .controls
-            .input-prepend
-              %span.add-on
-                %i.icon-lock
-              = password_field_tag :password, params[:password], :class => "span2", :id => "inputIcon"
-        .form-actions
-          = button_tag "Log in", :class => "btn btn-primary"
+.span8
+  = form_tag sessions_path, :class => "form-horizontal" do
+    %fieldset
+      %legend Login through Line Please
+      .control-group
+        = label_tag :username, "Username", :class => "control-label"
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-user
+            = text_field_tag :username, params[:username], :class => "span2", :id => "inputIcon"
+            %p.help-block Tip: Username is case sensitive
+      .control-group
+        = label_tag :password, "Password", :class => "control-label"
+        .controls
+          .input-prepend
+            %span.add-on
+              %i.icon-lock
+            = password_field_tag :password, params[:password], :class => "span2", :id => "inputIcon"
+      .form-actions
+        = button_tag "Log in", :class => "btn btn-primary"
 
-  .span4
-    %legend Login through Social
-    %p Login or signup through facebook.
-    %br/
-    %br/
-    .form-actions
-      %input.btn.btn-primary{:onclick => "javascript:facebookLogin()", :type => "button", :value => "Facebook Login"}
+.span8
+  %legend Login through Social
+  %p Login or signup through facebook.
+  %br/
+  %br/
+  .form-actions
+    %input.btn.btn-primary{:onclick => "javascript:facebookLogin()", :type => "button", :value => "Facebook Login"}

@@ -8,6 +8,7 @@
 //= require jquery_faded
 //= require twitter/bootstrap
 //= require facebook
+//= require mobilecheck
 //= require_tree .
 
 $(document).ready(function() {

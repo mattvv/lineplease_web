@@ -28,6 +28,18 @@
                 %li= link_to "Login", new_session_path
                 %li= link_to "Sign up", new_user_path
     .container
+      .alert.alert-info.ios-alert
+        Hey! You're on an iOS device - download our
+        %a{:href => "http://itunes.com/apps/opticpower/lineplease"}iOS Application
+        for the best possible experience
+        %a.close{"data-dismiss" => "alert", :href => "#"} x
+
+      .alert.alert-info.android-alert
+        Hey! You're on an Android device - download our
+        %a{:href => "https://market.android.com/details?id=com.mattvv.lineplease"}Android Application
+        for the best possible experience
+        %a.close{"data-dismiss" => "alert", :href => "#"} x
+
       - flash.each do |key, value|
         %div{:class =>"alert alert-#{key}"}
           = value
@@ -35,7 +47,7 @@
       .row
         - unless @nosidebar
           .span9= yield
-          .span3
+          .span3#news
             %legend
               iOS 1.1.1 Update
               %small Matt
