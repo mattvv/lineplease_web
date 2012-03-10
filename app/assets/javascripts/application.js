@@ -12,6 +12,18 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $('.dropdown-toggle').dropdown();
-  $(".alert").alert();
+    $('.dropdown-toggle').dropdown();
+    $(".alert").alert();
+    $('#female').click(function() {
+        $('#genderField').val("female");
+        $('#female').addClass("active");
+        $('#male').removeClass("active");
+        return false;
+    });
+    $('#male').click(function() {
+        $('#genderField').val("male");
+        $('#male').addClass("active");
+        $('#female').removeClass("active");
+        return false;
+    });
 });

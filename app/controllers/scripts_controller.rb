@@ -3,7 +3,7 @@ class ScriptsController < ApplicationController
 
   def create
     if params[:id]
-      if Script.add_line(params[:id], params[:character], params[:line])
+      if Script.add_line(params[:id], params[:character], params[:line], params[:gender])
         flash[:success] = "Added Line!"
       else
         flash[:error] = "Failed to Add Line"

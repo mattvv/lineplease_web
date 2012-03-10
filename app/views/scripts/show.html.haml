@@ -42,9 +42,10 @@
     .control-group
       = label_tag :gender, "Gender", :class => "control-label"
       .controls
+        = hidden_field_tag :gender, "female", :id => "genderField"
         .btn-group{"data-toggle" => "buttons-radio"}
-          %button.btn.active.gender Female
-          %button.btn.gender Male
+          = link_to "Female", "#", :remote => true, :class => "btn active gender", :id => "female"
+          = link_to "Male", "#", :remote => true, :class => "btn gender", :id => "male"
     .form-actions
       = submit_tag "Add Line", :class => "btn btn-primary"
       = button_tag "Back to Scripts", :class => "btn btn-inverse", :id => "back-to-scripts"

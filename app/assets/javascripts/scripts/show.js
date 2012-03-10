@@ -6,8 +6,4 @@ $(document).ready(function() {
     location.href = "/scripts";
     return false;
   });
-
-  $('.gender').click(function() {
-     return false;
-  });
 });

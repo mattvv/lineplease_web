@@ -13,7 +13,17 @@ class LinesController < ApplicationController
   end
 
   def update
-    if Line.update_line(params[:id], params[:character], params[:line])
+    character = params[:character].upcase
+    if Line.update_line(params[:id], character, params[:line], params[:gender])
+      current_line = Line.get_line(params[:id]).first
+      lines = Script.lines(current_line['scriptId'])
+      selected_character = character
+      lines.each do |line|
+        character = line['character'].upcase
+        if selected_character == character
+          Line.update_gender(line['objectId'], params[:gender])
+        end
+      end
       flash[:success] = "Updated Line"
     else
       flash[:error] = "Failed to Update Line"

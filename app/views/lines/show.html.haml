@@ -24,13 +24,14 @@
     .control-group
       = label_tag :gender, "Gender", :class => "control-label"
       .controls
+        = hidden_field_tag :gender, @line['gender'], :id => "genderField"
         .btn-group{"data-toggle" => "buttons-radio"}
-          - if @line['gender'] == "female"
-            %button.btn.active.gender Female
-            %button.btn.gender Male
+          - if @line['gender'] == "male"
+            = link_to "Female", "#", :remote => true, :class => "btn gender", :id => "female"
+            = link_to "Male", "#", :remote => true, :class => "btn active gender", :id => "male"
           - else
-            %button.btn.gender Female
-            %button.btn.active.gender Male
+            = link_to "Female", "#", :remote => true, :class => "btn active gender", :id => "female"
+            = link_to "Male", "#", :remote => true, :class => "btn gender", :id => "male"
     - if @line['recorded'] == "yes"
       .control-group
         = label_tag :recording, "Delete Recording", :class => "control-label"

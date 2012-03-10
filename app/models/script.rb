@@ -49,10 +49,10 @@ class Script
     end
   end
 
-  def self.add_line(script_id, character, line)
+  def self.add_line(script_id, character, line, gender)
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     begin
-      response = site["/classes/Line"].post({"scriptId"=>script_id, "character" => character, "line" => line}.to_json, :content_type => 'application/json', :accept => :json)
+      response = site["/classes/Line"].post({"scriptId"=>script_id, "character" => character, "line" => line, "gender" => gender}.to_json, :content_type => 'application/json', :accept => :json)
       !JSON.parse(response)["objectId"].blank?
     rescue Exception
       false
