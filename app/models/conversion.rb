@@ -42,7 +42,7 @@ class Conversion < ActiveRecord::Base
         p "reading page #{filename}"
         actual_page = page.read
         p "read page"
-        pagesarray[filename[(filename.length-5-1)]] = actual_page
+        pagesarray[filename[(filename.length-5-1)].to_i] = actual_page
         p "Adding page to array"
         page.close
         p "page #{pages} is #{actual_page}"
