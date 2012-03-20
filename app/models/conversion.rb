@@ -34,15 +34,16 @@ class Conversion < ActiveRecord::Base
     begin
       Dir.chdir("/opt/scripts/" + shortname[0, shortname.length-4])
       text = ""
-      pagesarray = ["","","","",""]
       pages = 0
-      Dir.glob("*.{txt}").each do |filename|
-        page = File.open(filename, 'rb')
+      length.times do |index|
+        current_page = index + 1
+        p "Opening " + shortname[0, shortname.length-4] + "_" + current_page + ".txt"
+        page = File.open(shortname[0, shortname.length-4] + "_" + current_page + ".txt", 'rb')
         #todo fix the page extraction here:
         p "reading page #{filename}"
         actual_page = page.read
         p "read page"
-        pagesarray[filename[(filename.length-5-1)].to_i] = actual_page
+        pagesarray << actual_page
         p "Adding page to array"
         page.close
         p "page #{pages} is #{actual_page}"
