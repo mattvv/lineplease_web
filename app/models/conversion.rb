@@ -40,7 +40,6 @@ class Conversion < ActiveRecord::Base
         p "Opening " + shortname[0, shortname.length-4] + "_#{current_page}.txt"
         page = File.open(shortname[0, shortname.length-4] + "_#{current_page}.txt", 'rb')
         #todo fix the page extraction here:
-        p "reading page #{filename}"
         actual_page = page.read
         p "read page"
         pagesarray << actual_page
