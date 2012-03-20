@@ -34,7 +34,7 @@ class Conversion < ActiveRecord::Base
     begin
       Dir.chdir("/opt/scripts/" + shortname[0, shortname.length-4])
       text = ""
-      pagesarray = []
+      pagesarray = ["","","","",""]
       pages = 0
       Dir.glob("*.{txt}").each do |filename|
         page = File.open(filename, 'rb')
@@ -42,7 +42,7 @@ class Conversion < ActiveRecord::Base
         p "reading page #{filename}"
         actual_page = page.read
         p "read page"
-        pagesarray << actual_page
+        pagesarray[filename[(filename.length-5-1)]] = actual_page
         p "Adding page to array"
         page.close
         p "page #{pages} is #{actual_page}"
