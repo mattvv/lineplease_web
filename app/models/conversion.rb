@@ -119,7 +119,9 @@ class Conversion < ActiveRecord::Base
     def self.clean_line(line)
       line = line.strip
       line = line.gsub(/\([^)]*\)/, "")
-      line = line[1, line.length] if line[0, 1] == "\n"
+      until line[0, 1] != "\n" and line[0, 1] != "." and line[0, 1] != " "
+        line = line[1, line.length]
+      end
       line = " " if line.nil?
       line
     end
