@@ -21,7 +21,9 @@ class Conversion < ActiveRecord::Base
     p "Extracting text..."
 
     begin
-      Docsplit.extract_text(pathname, :pages => 1..5, :output => "/opt/scripts/" + shortname[0, shortname.length-4])
+      length = Docsplit.extract_length(pathname)
+      length = 5 if length > 5
+      Docsplit.extract_text(pathname, :pages => 1..length, :output => "/opt/scripts/" + shortname[0, shortname.length-4])
     rescue Exception => e
       p e.message
     end
@@ -37,7 +39,7 @@ class Conversion < ActiveRecord::Base
       Dir.glob("*.{txt}").each do |filename|
         page = File.open(filename, 'rb')
         #todo fix the page extraction here:
-        p "reading page"
+        p "reading page #{filename}"
         actual_page = page.read
         p "read page"
         pagesarray << actual_page
