@@ -30,7 +30,7 @@ class Conversion < ActiveRecord::Base
 
     p "Done"
     p "Converting script to Lines/Characters"
-
+    pagesarray = []
     begin
       Dir.chdir("/opt/scripts/" + shortname[0, shortname.length-4])
       text = ""
