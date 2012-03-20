@@ -61,7 +61,7 @@ class Conversion < ActiveRecord::Base
 
     #try matching with "CHARACTER:"
     begin
-      characters, lines = ScriptParser.fill_lines(text, /[A-Z]{3,}+([ ][-]|[:]|[.]|)/)
+      characters, lines = ScriptParser.fill_lines(text, /[A-Z]{3,}+([ ][-]|[:]|[.])/)
     rescue Exception => e
       p e.message
     end
@@ -81,7 +81,7 @@ class Conversion < ActiveRecord::Base
     characters.each do |char|
       line = lines[count]
       unless line.nil? or char.nil?
-        Script.add_line(script, char, line)
+        Script.add_line(script, char, line, "female")
         p "Added line to script #{script}, #{char}, #{line}"
       end
       count = count + 1
