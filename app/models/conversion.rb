@@ -61,7 +61,7 @@ class Conversion < ActiveRecord::Base
 
     #try matching with "CHARACTER:"
     begin
-      characters, lines = ScriptParser.fill_lines(text, /[A-Z]+([ ]|[-]|[:]|[.]|)+[\n]/)
+      characters, lines = ScriptParser.fill_lines(text, /[A-Z]{3,}+([ ][-]|[:]|[.]|)/)
     rescue Exception => e
       p e.message
     end
