@@ -43,6 +43,7 @@ class Conversion < ActiveRecord::Base
         pagesarray << actual_page
         p "Adding page to array"
         page.close
+        p "page #{pages} is #{actual_page}"
         p "closed page #{pages}"
         pages = pages + 1
       end
