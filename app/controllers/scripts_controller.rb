@@ -14,7 +14,7 @@ class ScriptsController < ApplicationController
   end
 
   def index
-    @scripts = Script.where(:username => @current_user.username).all.reverse
+    @scripts = Script.where(:username => @current_user.username).order('-createdAt')
   end
 
   def show
