@@ -9,7 +9,7 @@ $(document).ready(function() {
     return false;
   });
 
-//    $('#sortable').sortable({
+//    $('#lines').sortable({
 //      stop: function(event, ui) {
 //        var line_id = $(ui.item).attr('id')
 //        var position = ui.item.prevAll().length;
@@ -20,5 +20,5 @@ $(document).ready(function() {
 //         });
 //      }
 //    });
-//  $( "#sortable" ).disableSelection();
+//  $( "#lines" ).disableSelection();
 });

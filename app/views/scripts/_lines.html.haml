@@ -1,0 +1,18 @@
+- @lines.each do |line|
+  %li.center{:id => "#{line.objectId}"}
+    .dropdown.line.center
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
+        = line.character.upcase
+        %br/
+        = simple_format line.line
+      %ul.center.dropdown-menu.center-menu{ :id => "#{line.objectId}"}
+        %li
+          %a{:href=>"#{line_path(line.objectId)}"}
+            %i.icon-pencil
+            Edit
+        %li.divider
+        %li
+          = link_to line_path(line.objectId), :method => :delete, :class => "lineDelete", :confirm => "Are you sure you want to delete this line?" do
+            %i.icon-trash
+            Delete
+    %br/

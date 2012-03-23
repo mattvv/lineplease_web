@@ -8,27 +8,10 @@
 
 %legend.center= @script.name
 
-%ul#sortable
-  - @lines.each do |line|
-    %li.center{:id => "#{line.objectId}"}
-      .dropdown.line.center
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
-          = line.character.upcase
-          %br/
-          = simple_format line.line
-        %ul.center.dropdown-menu.center-menu{ :id => "#{line.objectId}"}
-          %li
-            %a{:href=>"#{line_path(line.objectId)}"}
-              %i.icon-pencil
-              Edit
-          %li.divider
-          %li
-            = link_to line_path(line.objectId), :method => :delete, :class => "lineDelete", :confirm => "Are you sure you want to delete this line?" do
-              %i.icon-trash
-              Delete
-      %br/
+%ul#lines
+  = render 'lines'
 
-= form_for @line, :class => "well form-horizontal" do |f|
+= form_for @line, :remote => true, :class => "well form-horizontal" do |f|
   %fieldset
     %legend Add line
     = hidden_field_tag :script_id, @script.id
