@@ -84,6 +84,7 @@ GEM
     multi_json (1.1.0)
     multipart-post (1.1.5)
     mysql (2.8.1)
+    nokogiri (1.5.2)
     pakunok (0.0.3)
       execjs
       rails (>= 3.1.0)
@@ -171,6 +172,7 @@ DEPENDENCIES
   jquery-rails
   koala
   mysql
+  nokogiri
   pakunok
   parse_resource!
   pg

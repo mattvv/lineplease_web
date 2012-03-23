@@ -11,6 +11,7 @@ gem 'docsplit'
 gem 'pg'
 gem 'mysql' #todo: setup postgres for local dev
 gem 'koala'
+gem 'nokogiri'
 
 
 # Gems used only for assets and not required
