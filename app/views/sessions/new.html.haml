@@ -23,7 +23,11 @@
 .span8
   %legend Login through Social
   %p Login or signup through facebook.
-  %br/
-  %br/
   .form-actions
     %input.btn.btn-primary{:onclick => "javascript:facebookLogin()", :type => "button", :value => "Facebook Login"}
+
+.span8
+  %legend Reset Password
+  %p Forgotton your password? It's ok because you can reset it!
+  .form-actions
+    %a.btn.btn-primary{:href => "#{request_reset_password_users_path}"} Reset Password

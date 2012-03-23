@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mattvv/parse_resource.git
-  revision: b48ded0266f9b3205835b9cf5316d9fdd5f59de5
+  revision: a2219928bb37d86af6dce451138c4ce488aeb485
   specs:
     parse_resource (1.7.1)
       activemodel
@@ -48,8 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    commonjs (0.2.0)
-      therubyracer (~> 0.9.9)
+    commonjs (0.2.5)
     docsplit (0.6.3)
     erubis (2.7.0)
     execjs (1.3.0)
@@ -66,21 +65,21 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
-    koala (1.3.0)
+    koala (1.4.0)
       faraday (~> 0.7.0)
       multi_json (~> 1.0)
-    less (2.0.9)
+    less (2.0.11)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.9.9)
-    less-rails (2.1.6)
+    less-rails (2.1.8)
       actionpack (>= 3.1)
       less (~> 2.0.7)
     libv8 (3.3.10.4)
-    mail (2.4.1)
+    mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.17.2)
+    mime-types (1.18)
     multi_json (1.1.0)
     multipart-post (1.1.5)
     mysql (2.8.1)
@@ -92,7 +91,7 @@ GEM
     pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
-    rack-cache (1.1)
+    rack-cache (1.2)
       rack (>= 0.4)
     rack-protection (1.2.0)
       rack
@@ -129,7 +128,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     sass (3.1.15)
-    sass-rails (3.2.4)
+    sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
@@ -148,13 +147,13 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.9.3)
+    turn (0.9.4)
       ansi
-    twitter-bootstrap-rails (2.0.3)
+    twitter-bootstrap-rails (2.0.4)
       actionpack (>= 3.1)
-      less-rails (~> 2.1.6)
+      less-rails (~> 2.1.8)
       railties (>= 3.1)
-    tzinfo (0.3.31)
+    tzinfo (0.3.32)
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)

@@ -4,7 +4,13 @@ Lineplease::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   get "faq" => "home#faq", :as => "faq"
 
-  resources :users
+  resources :users do
+    collection do
+      get 'request_reset_password'
+      post 'reset_password'
+    end
+  end
+
   resources :sessions
   resources :scripts
   resources :home

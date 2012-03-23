@@ -19,4 +19,15 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+
+  def request_reset_password
+  end
+
+  def reset_password
+    email = params[:email]
+    unless User.reset_password(email)
+      flash[:error] = "Failed to Reset Password"
+      render "request_reset_password"
+    end
+  end
 end
