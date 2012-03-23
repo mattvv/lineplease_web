@@ -18,7 +18,7 @@
     .control-group
       = f.label :character, "Character", :class => "control-label"
       .controls
-        = f.text_field :character, "data-provide" => "typeahead", :class => "typeahead"
+        = f.text_field :character, "data-provide" => "typeahead", "data-items" => "5" :class => "typeahead"
     .control-group
       = f.label :line, "Line", :class => "control-label"
       .controls
@@ -33,3 +33,7 @@
     .form-actions
       = f.submit "Add Line", :class => "btn btn-primary"
       = button_tag "Back to Scripts", :class => "btn btn-inverse", :id => "back-to-scripts"
+
+:javascript
+    var characters = #{array_or_string_for_javascript(@characters)};
+    $('.typeahead').typeahead();

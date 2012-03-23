@@ -19,6 +19,6 @@
 
 :javascript
   $(document).ready(function() {
-    var characters = #{array_or_string_for_javascript(@characters)};
-    $('.typeahead').typeahead({source: characters, items:5});
+    alert("changing data-source" + #{array_or_string_for_javascript(@characters)})
+    $('#line_character').attr('data-source',#{array_or_string_for_javascript(@characters)});
   });
