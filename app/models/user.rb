@@ -1,33 +1,18 @@
 require "digest/sha1"
-class User
-  attr_accessor :user_id, :username
 
-  def initialize(options={})
-      self.user_id = options[:user_id]
-      self.username = options[:username]
-  end
+class User < ParseUser
+  field :email
 
-  def self.sign_up(username, password, email)
-    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
-    begin
-      response = site["/users"].post({"username"=>username, "password" => password, "email" => email}.to_json, :content_type => 'application/json', :accept => :json)
-      !JSON.parse(response)["objectId"].blank?
-    rescue Exception
-      false
-    end
-  end
+  def self.authenticate(username, password)
+    user = super(username, password)
+    session_id = Digest::SHA1.hexdigest(Time.now.to_s + rand(12341234).to_s)[1..10]
+    Session.create(:session_id => session_id, :username => user.username, :user_id => user.id)
+   end
 
-  #returns a user with login
-  def self.login(username, password)
-    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
-    begin
-      response = site["/login"].get({:params => {"username"=>username, "password" => password}})
-      #user = User.new(:username =>username, :user_id => )
-      session_id = Digest::SHA1.hexdigest(Time.now.to_s + rand(12341234).to_s)[1..10]
-      Session.create(:session_id => session_id, :username => username, :user_id => JSON.parse(response)["objectId"])
-    rescue Exception => e
-      false
-    end
+  def self.authenticate_with_facebook(user_id, access_token, expires)
+    user = super(user_id, access_token, expires)
+    session_id = Digest::SHA1.hexdigest(Time.now.to_s + rand(12341234).to_s)[1..10]
+    Session.create(:session_id => session_id, :username => user.username, :user_id => user.id)
   end
 
   def self.login_with_facebook(user_id, access_token, expires)

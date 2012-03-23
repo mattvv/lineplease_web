@@ -1,31 +1,31 @@
 .span8
-  = form_tag users_path, :class => "form-horizontal" do
+  = form_for @user, :class => "form-horizontal" do |f|
     %fieldset
       %legend Signup through Line Please
       .control-group
-        = label_tag :username, "Username", :class => "control-label"
+        = f.label :username, "Username", :class => "control-label"
         .controls
           .input-prepend
             %span.add-on
               %i.icon-user
-            = text_field_tag :username, nil, :class => "span2", :id => "inputIcon"
+            = f.text_field :username, :class => "span2", :id => "inputIcon"
             %p.help-block Tip: Username is case sensitive
       .control-group
-        = label_tag :password, "Password", :class => "control-label"
+        = f.label :password, "Password", :class => "control-label"
         .controls
           .input-prepend
             %span.add-on
               %i.icon-lock
-            = password_field_tag :password, nil, :class => "span2", :id => "inputIcon"
+            = f.password_field :password, :class => "span2", :id => "inputIcon"
       .control-group
-        =label_tag :email, "Email", :class => "control-label"
+        =f.label :email, "Email", :class => "control-label"
         .controls
           .input-prepend
             %span.add-on
               %i.icon-envelope
-            = text_field_tag :email, nil, :class => "span2", :id => "inputIcon"
+            = f.text_field :email, :class => "span2", :id => "inputIcon"
       .form-actions
-        = submit_tag "Sign up", :class => "btn btn-primary"
+        = f.submit "Sign up", :class => "btn btn-primary"
 .span8
   %legend Signup through Social
   %p Login or signup through facebook.
