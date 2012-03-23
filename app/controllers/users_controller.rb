@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.save
     if @user.valid?
-      us = User.login(@user.username, @user.password)
+      us = User.authenticate(params[:username], params[:password])
       if us
         session[:user_id] = us
         redirect_to scripts_url, :notice => "Signed up"
