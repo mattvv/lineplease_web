@@ -3,43 +3,43 @@
     = link_to "Scripts" ,scripts_path
     %span.divider >
   %li
-    = link_to @script['name'], script_path(@script['objectId'])
+    = link_to @script.name, script_path(@script.id)
     %span.divider >
   %li
     Line
 
-= form_tag line_path(@line['objectId']), :method => "put", :class => "well form-horizontal" do
+= form_for @line, :class => "well form-horizontal" do |f|
   %fieldset
     %legend Edit line
-    = hidden_field_tag :id, @line['objectId']
-    = hidden_field_tag :script_id, @script['objectId']
+    = f.hidden_field :id, :value => @line.objectId
+    = f.hidden_field :scriptId
     .control-group
-      = label_tag :character, "Character", :class => "control-label"
+      = f.label :character, "Character", :class => "control-label"
       .controls
-        = text_field_tag :character, @line['character'], :class => "input-xlarge typeahead", "data-provide" => "typeahead"
+        = f.text_field :character, :class => "input-xlarge typeahead", "data-provide" => "typeahead"
     .control-group
-      = label_tag :line, "Line", :class => "control-label"
+      = f.label :line, "Line", :class => "control-label"
       .controls
-        = text_area_tag :line, @line['line'], :class => "input-xlarge"
+        = f.text_area :line, :class => "input-xlarge"
     .control-group
-      = label_tag :gender, "Gender", :class => "control-label"
+      = f.label :gender, "Gender", :class => "control-label"
       .controls
-        = hidden_field_tag :gender, @line['gender'], :id => "genderField"
+        = f.hidden_field :gender, :id => "genderField"
         .btn-group{"data-toggle" => "buttons-radio"}
-          - if @line['gender'] == "male"
+          - if @line.gender == "male"
             = link_to "Female", "#", :remote => true, :class => "btn gender", :id => "female"
             = link_to "Male", "#", :remote => true, :class => "btn active gender", :id => "male"
           - else
             = link_to "Female", "#", :remote => true, :class => "btn active gender", :id => "female"
             = link_to "Male", "#", :remote => true, :class => "btn gender", :id => "male"
-    - if @line['recorded'] == "yes"
+    - if @line.recorded == "yes"
       .control-group
-        = label_tag :recording, "Delete Recording", :class => "control-label"
+        = f.label :recording, "Delete Recording", :class => "control-label"
         .controls
           Coming Soon
     .form-actions
-      = submit_tag "Edit Line", :class => "btn btn-primary"
-      = link_to "Back to Script", script_path(@script['objectId']), :class => "btn btn-inverse"
+      = f.submit "Edit Line", :class => "btn btn-primary"
+      = link_to "Back to Script", script_path(@line.scriptId), :class => "btn btn-inverse"
 
 :javascript
   $(document).ready(function() {

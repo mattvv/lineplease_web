@@ -1,31 +1,11 @@
-class Line
-  def self.get_line(line_id)
-    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
-    begin
-      response = site["/classes/Line"].get({:params => {:order => "createdAt", :where => {"objectId" => line_id }.to_json}})
-      JSON.parse(response)["results"]
-    rescue Exception => e
-      false
-    end
-  end
+class Line < ParseResource::Base
+  fields :character, :gender, :line, :recorded, :recordingFile, :scriptId
 
-  def self.update_line(line_id, character, line, gender)
-    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
-    begin
-      response = site["/classes/Line/#{line_id}"].put({"character"=>character, "gender" => gender, "line" => line}.to_json, :content_type => 'application/json', :accept => :json)
-      !JSON.parse(response)["updatedAt"].blank?
-    rescue Exception => e
-      false
-    end
-  end
+  belongs_to :script
 
-  def self.update_gender(line_id, gender)
-    site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
-    begin
-      response = site["/classes/Line/#{line_id}"].put({"gender"=>gender}.to_json, :content_type => 'application/json', :accept => :json)
-      !JSON.parse(response)["updatedAt"].blank?
-    rescue Exception => e
-      false
-    end
+  #after_save :update_character_gender
+
+  def update_character_gender
+
   end
 end

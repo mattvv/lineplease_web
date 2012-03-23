@@ -12,17 +12,17 @@
   %p
     .dropdown.line.center
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
-        = script["name"]
+        = script.name
 
-      %ul.center.dropdown-menu.center-menu{ :id => "#{script["objectId"]}"}
+      %ul.center.dropdown-menu.center-menu{ :id => "#{script.id}"}
         %li
           %a{:href=>"#"}
-            = link_to script_path(script["objectId"]) + "?name=#{script["name"]}" do
+            = link_to script_path(script.id) + "?name=#{script.name}" do
               %i.icon-film
               View
         %li.divider
         %li
-          = link_to script_path(script["objectId"]), :method => :delete, :confirm => "Are you sure you want to delete this script?" do
+          = link_to script_path(script.id), :method => :delete, :confirm => "Are you sure you want to delete this script?" do
             %i.icon-trash
             Delete
 %br/

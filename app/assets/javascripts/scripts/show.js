@@ -1,3 +1,5 @@
+//= require pakunok/jquery-ui/pack/sortable
+
 $(document).ready(function() {
   $('.tabs').button();
 
@@ -6,4 +8,17 @@ $(document).ready(function() {
     location.href = "/scripts";
     return false;
   });
+
+//    $('#sortable').sortable({
+//      stop: function(event, ui) {
+//        var line_id = $(ui.item).attr('id')
+//        var position = ui.item.prevAll().length;
+//        alert("line id: " + line_id + ", position: " + position);
+//        $.post('/lines/update_position', {
+//          'line_id': line_id,
+//          'position': position
+//         });
+//      }
+//    });
+//  $( "#sortable" ).disableSelection();
 });

@@ -5,11 +5,13 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem "parse_resource"
 gem 'rest-client'
 gem 'docsplit'
 gem 'pg'
 gem 'mysql' #todo: setup postgres for local dev
 gem 'koala'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,6 +27,8 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'jquery-rails'
 gem 'resque'
+
+gem 'pakunok' #jqueryui
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

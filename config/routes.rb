@@ -11,5 +11,7 @@ Lineplease::Application.routes.draw do
   resources :conversions
   resources :lines
 
+  match "/lines/update_position" => "lines#update_position"
+
   root :to => "home#index"
 end

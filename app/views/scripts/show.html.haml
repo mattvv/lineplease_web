@@ -2,52 +2,53 @@
   %li
     = link_to "Scripts" ,scripts_path
     %span.divider >
-  %li= @name
+  %li= @script.name
 
 %p To play back your scripts, simply log in to Line Please on your smart phone, choose the script and hit play
 
-%legend.center= @name
+%legend.center= @script.name
 
-- @lines.each do |line|
-  %p.center
-    .dropdown.line.center
-      %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
-        = line["character"].upcase
-        %br/
-        = simple_format line["line"]
-      %ul.center.dropdown-menu.center-menu{ :id => "#{line['objectId']}"}
-        %li
-          %a{:href=>"#{line_path(line['objectId'])}"}
-            %i.icon-pencil
-            Edit
-        %li.divider
-        %li
-          = link_to script_path(line["scriptId"]) + "?line_id=#{line["objectId"]}", :method => :delete, :class => "lineDelete", :confirm => "Are you sure you want to delete this line?" do
-            %i.icon-trash
-            Delete
-    %br/
+%ul#sortable
+  - @lines.each do |line|
+    %li.center{:id => "#{line.objectId}"}
+      .dropdown.line.center
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
+          = line.character.upcase
+          %br/
+          = simple_format line.line
+        %ul.center.dropdown-menu.center-menu{ :id => "#{line.objectId}"}
+          %li
+            %a{:href=>"#{line_path(line.objectId)}"}
+              %i.icon-pencil
+              Edit
+          %li.divider
+          %li
+            = link_to line_path(line.objectId), :method => :delete, :class => "lineDelete", :confirm => "Are you sure you want to delete this line?" do
+              %i.icon-trash
+              Delete
+      %br/
 
-= form_tag scripts_path, :class => "well form-horizontal" do
+= form_for @line, :class => "well form-horizontal" do |f|
   %fieldset
     %legend Add line
-    = hidden_field_tag :id, @script
+    = hidden_field_tag :script_id, @script.id
     .control-group
-      = label_tag :character, "Character", :class => "control-label"
+      = f.label :character, "Character", :class => "control-label"
       .controls
-        = text_field_tag :character, nil, "data-provide" => "typeahead", :class => "typeahead"
+        = f.text_field :character, "data-provide" => "typeahead", :class => "typeahead"
     .control-group
-      = label_tag :line, "Line", :class => "control-label"
+      = f.label :line, "Line", :class => "control-label"
       .controls
-        = text_area_tag :line
+        = f.text_area :line
     .control-group
-      = label_tag :gender, "Gender", :class => "control-label"
+      = f.label :gender, "Gender", :class => "control-label"
       .controls
-        = hidden_field_tag :gender, "female", :id => "genderField"
+        = f.hidden_field :gender, :value => "female", :id => "genderField"
         .btn-group{"data-toggle" => "buttons-radio"}
           = link_to "Female", "#", :remote => true, :class => "btn active gender", :id => "female"
           = link_to "Male", "#", :remote => true, :class => "btn gender", :id => "male"
     .form-actions
-      = submit_tag "Add Line", :class => "btn btn-primary"
+      = f.submit "Add Line", :class => "btn btn-primary"
       = button_tag "Back to Scripts", :class => "btn btn-inverse", :id => "back-to-scripts"
 :javascript
   $(document).ready(function() {
