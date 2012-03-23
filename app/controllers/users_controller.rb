@@ -5,14 +5,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.save
-    if @user.valid?
-      us = User.authenticate(params[:username], params[:password])
-      if us
+    if @user.save
+      us = User.authenticate(@user.username, @user.password)
+      if !!us
         session[:user_id] = us
         redirect_to scripts_url, :notice => "Signed up"
       else
-        flash[:error] = "Invalid user or password"
+        flash[:error] = "Username is already taken"
         render "new"
       end
     else
