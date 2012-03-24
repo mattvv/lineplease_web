@@ -9,16 +9,16 @@ $(document).ready(function() {
     return false;
   });
 
-//    $('#lines').sortable({
-//      stop: function(event, ui) {
-//        var line_id = $(ui.item).attr('id')
-//        var position = ui.item.prevAll().length;
-//        alert("line id: " + line_id + ", position: " + position);
-//        $.post('/lines/update_position', {
-//          'line_id': line_id,
-//          'position': position
-//         });
-//      }
-//    });
-//  $( "#lines" ).disableSelection();
+    $('#lines').sortable({
+      stop: function(event, ui) {
+        var line_id = $(ui.item).attr('id')
+        var position = ui.item.prevAll().length;
+        alert("line id: " + line_id + ", position: " + position);
+        $.post('/lines/update_position', {
+          'line_id': line_id,
+          'position': position
+         });
+      }
+    });
+  $( "#lines" ).disableSelection();
 });

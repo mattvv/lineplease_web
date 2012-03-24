@@ -8,6 +8,7 @@ class LinesController < ApplicationController
     end
     line = Line.new(params[:line])
     line.scriptId = params[:script_id]
+    line.position = Line.where(:script => line.scriptId).count
     if line.save
       flash[:success] = "Added Line!"
     else
@@ -60,14 +61,8 @@ class LinesController < ApplicationController
   end
 
   def update_position
-    @line = Line.get_line(params[:line_id]).first
-    @lines = Script.lines(@line['scriptId'])
-    position = params[:position].to_i
-    line_above = @lines[position]
-    line_below = @lines[position+1]
-    time_between = (Time.parse(line_below['createdAt']) - Time.parse(line_above['createdAt'])) / 2
-    new_time = Time.parse(line_above['createdAt']) + time_between
-    Line.update_time(params[:line_id], new_time)
+    line = Line.find(params[:line_id])
+    line.update_position(params[:position].to_i)
     render :nothing => true
   end
 end

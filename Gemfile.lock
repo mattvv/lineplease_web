@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/mattvv/parse_resource.git
-  revision: a2219928bb37d86af6dce451138c4ce488aeb485
+PATH
+  remote: ~/Documents/projects/parse_resource/
   specs:
     parse_resource (1.7.1)
       activemodel

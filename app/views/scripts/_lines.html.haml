@@ -2,7 +2,9 @@
   %li.center{:id => "#{line.objectId}"}
     .dropdown.line.center
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
+        = line.position
         = line.character.upcase
+        = line.id
         %br/
         = simple_format line.line
       %ul.center.dropdown-menu.center-menu{ :id => "#{line.objectId}"}
