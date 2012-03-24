@@ -13,7 +13,6 @@ $(document).ready(function() {
       stop: function(event, ui) {
         var line_id = $(ui.item).attr('id')
         var position = ui.item.prevAll().length;
-        alert("line id: " + line_id + ", position: " + position);
         $.post('/lines/update_position', {
           'line_id': line_id,
           'position': position

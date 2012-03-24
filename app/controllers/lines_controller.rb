@@ -8,7 +8,7 @@ class LinesController < ApplicationController
     end
     line = Line.new(params[:line])
     line.scriptId = params[:script_id]
-    line.position = Line.where(:script => line.scriptId).count
+    line.position = Line.where(:scriptId => line.scriptId).count
     if line.save
       flash[:success] = "Added Line!"
     else
