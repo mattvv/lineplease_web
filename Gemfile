@@ -5,7 +5,7 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem "parse_resource", :path => "~/Documents/projects/parse_resource/" #:git => "git://github.com/mattvv/parse_resource.git"
+gem "parse_resource", :git => "git://github.com/mattvv/parse_resource.git"
 gem 'rest-client'
 gem 'docsplit'
 gem 'pg'
