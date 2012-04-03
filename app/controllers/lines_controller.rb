@@ -9,6 +9,7 @@ class LinesController < ApplicationController
     line = Line.new(params[:line])
     line.scriptId = params[:script_id]
     line.position = Line.where(:scriptId => line.scriptId).count
+    line.gender = "female" if line.gender.blank?
     if line.save
       flash[:success] = "Added Line!"
     else

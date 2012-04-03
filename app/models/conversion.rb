@@ -70,7 +70,10 @@ class Conversion < ActiveRecord::Base
     end
     script_name = JSON.parse(response)["results"].first["name"]
 
-    script = Script.add_script_return(script_name, username)
+    script = Script.new
+    script.name = script_name
+    script.username = username
+    script.save
 
     count = 0
 
@@ -81,13 +84,18 @@ class Conversion < ActiveRecord::Base
     #end
 
     p "Adding lines to Parse"
-    characters.each do |char|
-      line = lines[count]
+    characters.each do |char, index|
+      line = lines[index]
       unless line.nil? or char.nil?
-        Script.add_line(script, char, line, "female")
+        line = Line.new
+        line.scriptId = script.id
+        line.character = char
+        line.gender = "female"
+        line.line = line
+        line.position = index
+        line.save
         p "Added line to script #{script}, #{char}, #{line}"
       end
-      count = count + 1
     end
     p "Added Lines"
 

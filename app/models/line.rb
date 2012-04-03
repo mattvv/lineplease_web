@@ -42,7 +42,56 @@ class Line < ParseResource::Base
       end
 
     end
+  end
 
+  def self.clean_lines
+    #todo: script in checking of scripts that have been deleted
+
+
+    #clean lines that don't have a script
+    lines = Line.where(:scriptId => nil).count
+    puts "Lines that don't have a script: #{lines}"
+    lines = (lines / 1000) + 1
+    count = 0
+
+    lines.times do
+      the_lines = Line.where(:scriptId => nil).limit(1000)
+      the_lines.each do |the_line|
+        count = count + 1
+        puts "deleting line #{count}"
+        the_line.destroy unless the_line.id.nil?
+      end
+    end
+
+    #clean lines that don't have a line
+    lines = Line.where(:line => nil).count
+    puts "Lines that don't have a Line: #{lines}"
+    lines = (lines / 1000) + 1
+    count = 0
+
+    lines.times do
+      the_lines = Line.where(:line => nil).limit(1000)
+      the_lines.each do |the_line|
+        count = count + 1
+        puts "deleting line #{count} "
+        the_line.destroy unless the_line.id.nil?
+      end
+    end
+
+    #clean lines that don't have a character
+    lines = Line.where(:character => nil).count
+    puts "Lines that don't have a script: #{lines}"
+    lines = (lines / 1000) + 1
+    count = 0
+
+    lines.times do
+      the_lines = Line.where(:character => nil).limit(1000)
+      the_lines.each do |the_line|
+        count = count + 1
+        puts "deleting line #{count}"
+        the_line.destroy unless the_line.id.nil?
+      end
+    end
 
   end
 end
