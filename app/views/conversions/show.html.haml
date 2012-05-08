@@ -1,2 +1,8 @@
 #status
   =render :partial => "conversion"
+
+:javascript
+  var conversion_id = "#{@conversion.id}"
+  $(document).ready(function() {
+      updateStatus();
+  })

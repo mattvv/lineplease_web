@@ -91,7 +91,7 @@ class Conversion < ParseResource::Base
     script.name = script_name
     script.username = username
     script.save
-    @conversion.scriptId = script.object_id
+    @conversion.scriptId = script.id
     @conversion.status = "Putting Lines into Script..."
     @conversion.percent = 85
     @conversion.save
@@ -105,16 +105,18 @@ class Conversion < ParseResource::Base
 
     p "Adding lines to Parse"
     characters.each do |char, index|
-      line = lines[index]
-      unless line.nil? or char.nil?
-        line = Line.new
-        line.scriptId = script.id
-        line.character = char
-        line.gender = "female"
-        line.line = line
-        line.position = index
-        line.save
-        p "Added line to script #{script}, #{char}, #{line}"
+      unless index.nil?
+        line = lines[index]
+        unless line.nil? or char.nil?
+          line = Line.new
+          line.scriptId = script.id
+          line.character = char
+          line.gender = "female"
+          line.line = line
+          line.position = index
+          line.save
+          p "Added line to script #{script}, #{char}, #{line}"
+        end
       end
     end
     p "Added Lines"

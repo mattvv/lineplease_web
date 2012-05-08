@@ -14,7 +14,11 @@ Lineplease::Application.routes.draw do
   resources :sessions
   resources :scripts
   resources :home
-  resources :conversions
+  resources :conversions do
+    collection do
+      get 'status'
+    end
+  end
   resources :lines
 
   match "/lines/update_position" => "lines#update_position"
