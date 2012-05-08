@@ -11,9 +11,14 @@ class Conversion < ParseResource::Base
     shortname = File.basename(file)
     pathname = "/opt/scripts/"+shortname
 
-    update_attribute(:status, "Downloading Script to Process...")
-    update_attribute(:percent, 5)
-    p "Downloading file..."
+    begin
+      p "Downloading file..."
+      update_attribute(:status, "Downloading Script to Process...")
+      update_attribute(:percent, 5)
+    rescue Exception => e
+      p e.message
+    end
+
     require 'open-uri'
     writeOut = open(pathname, "wb")
     writeOut.write(open(file).read)

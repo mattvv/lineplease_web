@@ -30,4 +30,8 @@ class ConversionsController < ApplicationController
 
   def index
   end
+
+  def status
+    @conversion = Conversion.find(params[:id])
+  end
 end

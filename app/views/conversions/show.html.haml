@@ -1,4 +1,2 @@
-%h1 Script: #{@conversion.name}
-%p= @conversion.try(:status)
-.progress.progress-striped.active
-  .bar{:style=>"width: 0%;"}
+#status
+  =render :partial => "conversion"
