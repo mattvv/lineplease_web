@@ -108,14 +108,16 @@ class Conversion < ParseResource::Base
       p "index is #{index}"
       line = lines[index]
       unless line.nil? or char.nil?
+        line.gsub!(/[^0-9a-z ]/i, '')
+        char.gsub!(/[^0-9a-z ]/i, '')
         p "parsing line #{line}"
-        line = Line.new
-        line.scriptId = script.id
-        line.character = char
-        line.gender = "female"
-        line.line = line
-        line.position = index
-        line.save
+        l = Line.new
+        l.scriptId = script.id
+        l.character = char
+        l.gender = "female"
+        l.line = line
+        l.position = index
+        l.save
         p "Added line to script #{script}, #{char}, #{line}"
       end
       puts "adding index"
