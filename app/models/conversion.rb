@@ -85,10 +85,9 @@ class Conversion < ParseResource::Base
     rescue Exception => e
       p e.message
     end
-    script_name = JSON.parse(response)["results"].first["name"]
 
     script = Script.new
-    script.name = script_name
+    script.name = @conversion.name
     script.username = username
     script.save
     @conversion.scriptId = script.id
@@ -109,6 +108,7 @@ class Conversion < ParseResource::Base
       p "index is #{index}"
       line = lines[index]
       unless line.nil? or char.nil?
+        p "parsing line #{line}"
         line = Line.new
         line.scriptId = script.id
         line.character = char
@@ -118,6 +118,7 @@ class Conversion < ParseResource::Base
         line.save
         p "Added line to script #{script}, #{char}, #{line}"
       end
+      puts "adding index"
       index = index + 1
     end
     p "Added Lines"

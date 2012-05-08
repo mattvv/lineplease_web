@@ -14,7 +14,7 @@
 %ul#lines
   = render 'lines'
 
-= form_for @line, :remote => true, :class => "well form-horizontal" do |f|
+= form_for @line, :remote => true, :class => "well form form-horizontal" do |f|
   %fieldset
     %legend Add line
     = hidden_field_tag :script_id, @script.id
@@ -25,7 +25,7 @@
     .control-group
       = f.label :line, "Line", :class => "control-label"
       .controls
-        = f.text_area :line
+        = f.text_area :line, :rows => 4
     .control-group
       = f.label :gender, "Gender", :class => "control-label"
       .controls
