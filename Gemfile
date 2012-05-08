@@ -10,7 +10,7 @@ gem 'rest-client'
 gem 'docsplit'
 gem 'pg'
 gem 'koala'
-gem 'sqlite3'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,6 +19,14 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
+end
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
 gem 'haml'
