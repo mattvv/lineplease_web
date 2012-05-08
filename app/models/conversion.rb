@@ -103,26 +103,25 @@ class Conversion < ParseResource::Base
     #  count = count + 1
     #end
     p "character count is #{characters.count}"
-
+    index = 0
     p "Adding lines to Parse"
-    characters.each do |char, index|
+    characters.each do |char|
       p "index is #{index}"
-      unless index.nil?
-        line = lines[index]
-        unless line.nil? or char.nil?
-          line = Line.new
-          line.scriptId = script.id
-          line.character = char
-          line.gender = "female"
-          line.line = line
-          line.position = index
-          line.save
-          p "Added line to script #{script}, #{char}, #{line}"
-        end
+      line = lines[index]
+      unless line.nil? or char.nil?
+        line = Line.new
+        line.scriptId = script.id
+        line.character = char
+        line.gender = "female"
+        line.line = line
+        line.position = index
+        line.save
+        p "Added line to script #{script}, #{char}, #{line}"
       end
+      index = index + 1
     end
     p "Added Lines"
-    @conversion.status = "Successful!"
+    @conversion.status = "Completed"
     @conversion.percent = 100
     @conversion.save
     p "Updated Status to 100"
