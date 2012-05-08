@@ -1,5 +1,5 @@
 $('#status').html("#{escape_javascript(render("conversion"))}");
 width = #{@conversion.percent}
 if (width == 100) {
-$('#complete').html('Your Script is Complete - View it <a href="/scripts/#{@conversion.scriptId}">View it now</a>')
+$('#complete').html('Your Script is Complete: <a href="/scripts/#{@conversion.scriptId}">View it now</a>')
 }
