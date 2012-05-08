@@ -3,7 +3,7 @@ class Conversion < ParseResource::Base
   fields :name, :scriptId, :file, :percent, :error
 
   def self.perform(objectId, username)
-    reload
+    self.reload
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     response = site["/classes/Conversion"].get({:params => {:where => {"objectId" => objectId }.to_json}})
     file = JSON.parse(response)["results"].first["file"]["name"]
