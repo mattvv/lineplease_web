@@ -22,6 +22,8 @@ test:
 
 production:
   adapter: mysql
-  database: db/production.sqlite3
+  database: lineplease_dev
+  username: root
+  password:
   pool: 5
   timeout: 5000
