@@ -13,8 +13,9 @@ class Conversion < ParseResource::Base
 
     begin
       p "Downloading file..."
-      @conversion.update_attribute(:status, "Downloading Script to Process...")
-      @conversion.update_attribute(:percent, 5)
+      @conversion.status = "Downloading Script to Process..."
+      @conversion.percent = 10
+      @conversion.save
     rescue Exception => e
       p e.message
     end
@@ -27,8 +28,9 @@ class Conversion < ParseResource::Base
     p "Done"
     #puts text in array
 
-    @conversion.update_attribute(:status, "Extracting text...")
-    @conversion.update_attribute(:percent, 10)
+    @conversion.status = "Extracting text..."
+    @conversion.percent = 20
+    @conversion.save
     begin
       length = Docsplit.extract_length(pathname)
       length = 5 if length > 5
@@ -36,8 +38,9 @@ class Conversion < ParseResource::Base
     rescue Exception => e
       p e.message
     end
-    @conversion.update_attribute(:status, "Ordering Pages...")
-    @conversion.update_attribute(:percent, 40)
+    @conversion.status = "Ordering Pages..."
+    @conversion.percent = 60
+    @conversion.save
     p "Done"
     p "Converting script to Lines/Characters"
     pagesarray = []
@@ -65,13 +68,15 @@ class Conversion < ParseResource::Base
       end
     rescue Exception => e
       p e.message
-      @conversion.update_attribute(:error, e.message)
+      @conversion.error = e.message
+      @conversion.save
       p e.backtracke
     end
 
     p text
-    @conversion.update_attribute(:status, "Arranging Characters and lines...")
-    @conversion.update_attribute(:percent, 60)
+    @conversion.status = "Arranging Characters and lines..."
+    @conversion.percent = 75
+    @conversion.save
     p "parsing the script now"
 
     #try matching with "CHARACTER:"
@@ -86,9 +91,10 @@ class Conversion < ParseResource::Base
     script.name = script_name
     script.username = username
     script.save
-    @conversion.update_attribute(:scriptId, script.object_id)
-    @conversion.update_attribute(:status, "Putting Lines into Script...")
-    @conversion.update_attribute(:percent, 75)
+    @conversion.scriptId = script.object_id
+    @conversion.status = "Putting Lines into Script..."
+    @conversion.percent = 85
+    @conversion.save
     count = 0
 
     #characters.each do
@@ -112,8 +118,9 @@ class Conversion < ParseResource::Base
       end
     end
     p "Added Lines"
-    @conversion.update_attribute(:status, "Successful!")
-    @conversion.update_attribute(:percent, 100)
+    @conversion.status = "Successful!"
+    @conversion.percent = 100
+    @conversion.save
 
   end
 
