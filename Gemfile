@@ -10,6 +10,7 @@ gem 'rest-client'
 gem 'docsplit'
 gem 'pg'
 gem 'koala'
+gem 'mysql'
 
 
 # Gems used only for assets and not required
@@ -19,10 +20,6 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
-end
-
-group :production do
-  gem 'mysql2'
 end
 
 gem 'haml'
