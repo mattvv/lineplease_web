@@ -3,7 +3,7 @@ class Conversion < ParseResource::Base
   fields :name, :scriptId, :file, :percent, :error
 
   def self.perform(objectId, username)
-    self.reload
+    @conversion = Conversion.find(objectId)
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     response = site["/classes/Conversion"].get({:params => {:where => {"objectId" => objectId }.to_json}})
     file = JSON.parse(response)["results"].first["file"]["name"]
@@ -13,8 +13,8 @@ class Conversion < ParseResource::Base
 
     begin
       p "Downloading file..."
-      update_attribute(:status, "Downloading Script to Process...")
-      update_attribute(:percent, 5)
+      @conversion.update_attribute(:status, "Downloading Script to Process...")
+      @conversion.update_attribute(:percent, 5)
     rescue Exception => e
       p e.message
     end
@@ -27,8 +27,8 @@ class Conversion < ParseResource::Base
     p "Done"
     #puts text in array
 
-    update_attribute(:status, "Extracting text...")
-    update_attribute(:percent, 10)
+    @conversion.update_attribute(:status, "Extracting text...")
+    @conversion.update_attribute(:percent, 10)
     begin
       length = Docsplit.extract_length(pathname)
       length = 5 if length > 5
@@ -36,8 +36,8 @@ class Conversion < ParseResource::Base
     rescue Exception => e
       p e.message
     end
-    update_attribute(:status, "Ordering Pages...")
-    update_attribute(:percent, 40)
+    @conversion.update_attribute(:status, "Ordering Pages...")
+    @conversion.update_attribute(:percent, 40)
     p "Done"
     p "Converting script to Lines/Characters"
     pagesarray = []
@@ -65,13 +65,13 @@ class Conversion < ParseResource::Base
       end
     rescue Exception => e
       p e.message
-      update_attribute(:error, e.message)
+      @conversion.update_attribute(:error, e.message)
       p e.backtracke
     end
 
     p text
-    update_attribute(:status, "Arranging Characters and lines...")
-    update_attribute(:percent, 60)
+    @conversion.update_attribute(:status, "Arranging Characters and lines...")
+    @conversion.update_attribute(:percent, 60)
     p "parsing the script now"
 
     #try matching with "CHARACTER:"
@@ -86,9 +86,9 @@ class Conversion < ParseResource::Base
     script.name = script_name
     script.username = username
     script.save
-    update_attribute(:scriptId, script.object_id)
-    update_attribute(:status, "Putting Lines into Script...")
-    update_attribute(:percent, 75)
+    @conversion.update_attribute(:scriptId, script.object_id)
+    @conversion.update_attribute(:status, "Putting Lines into Script...")
+    @conversion.update_attribute(:percent, 75)
     count = 0
 
     #characters.each do
@@ -112,8 +112,8 @@ class Conversion < ParseResource::Base
       end
     end
     p "Added Lines"
-    update_attribute(:status, "Successful!")
-    update_attribute(:percent, 100)
+    @conversion.update_attribute(:status, "Successful!")
+    @conversion.update_attribute(:percent, 100)
 
   end
 
