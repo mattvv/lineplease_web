@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20111113001949) do
     t.string   "session_id"
     t.string   "user_id"
     t.string   "username"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

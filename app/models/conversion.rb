@@ -1,7 +1,9 @@
-class Conversion < ActiveRecord::Base
+class Conversion < ParseResource::Base
   @queue = :default
+  fields :name, :scriptId, :file, :percent, :error
 
   def self.perform(objectId, username)
+    reload
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     response = site["/classes/Conversion"].get({:params => {:where => {"objectId" => objectId }.to_json}})
     file = JSON.parse(response)["results"].first["file"]["name"]
@@ -9,6 +11,8 @@ class Conversion < ActiveRecord::Base
     shortname = File.basename(file)
     pathname = "/opt/scripts/"+shortname
 
+    update_attribute(:status, "Downloading Script to Process...")
+    update_attribute(:percent, 5)
     p "Downloading file..."
     require 'open-uri'
     writeOut = open(pathname, "wb")
@@ -18,8 +22,8 @@ class Conversion < ActiveRecord::Base
     p "Done"
     #puts text in array
 
-    p "Extracting text..."
-
+    update_attribute(:status, "Extracting text...")
+    update_attribute(:percent, 10)
     begin
       length = Docsplit.extract_length(pathname)
       length = 5 if length > 5
@@ -27,7 +31,8 @@ class Conversion < ActiveRecord::Base
     rescue Exception => e
       p e.message
     end
-
+    update_attribute(:status, "Ordering Pages...")
+    update_attribute(:percent, 40)
     p "Done"
     p "Converting script to Lines/Characters"
     pagesarray = []
@@ -55,11 +60,13 @@ class Conversion < ActiveRecord::Base
       end
     rescue Exception => e
       p e.message
+      update_attribute(:error, e.message)
       p e.backtracke
     end
 
     p text
-
+    update_attribute(:status, "Arranging Characters and lines...")
+    update_attribute(:percent, 60)
     p "parsing the script now"
 
     #try matching with "CHARACTER:"
@@ -74,7 +81,9 @@ class Conversion < ActiveRecord::Base
     script.name = script_name
     script.username = username
     script.save
-
+    update_attribute(:scriptId, script.object_id)
+    update_attribute(:status, "Putting Lines into Script...")
+    update_attribute(:percent, 75)
     count = 0
 
     #characters.each do
@@ -98,6 +107,8 @@ class Conversion < ActiveRecord::Base
       end
     end
     p "Added Lines"
+    update_attribute(:status, "Successful!")
+    update_attribute(:percent, 100)
 
   end
 
