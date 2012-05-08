@@ -16,7 +16,7 @@ Lineplease::Application.routes.draw do
   resources :home
   resources :conversions do
     collection do
-      get 'status'
+      post 'status'
     end
   end
   resources :lines
