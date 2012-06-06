@@ -26,6 +26,7 @@
               %li= link_to "Issues", "https://github.com/mattvv/lineplease/issues"
               - if @current_user
                 %li= link_to "Scripts", scripts_path
+                %li= link_to "Conversions", conversions_path
                 %li= link_to "Logout", logout_path, :class => "logout"
               - else
                 %li= link_to "Login", new_session_path

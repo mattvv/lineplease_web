@@ -13,7 +13,7 @@ class ConversionsController < ApplicationController
     begin
       file_response = site["/files/#{file.original_filename}"].post file.tempfile, :content_type => file.content_type#, :accept => :json)
       url = JSON.parse(file_response)["url"]
-      response = site["/classes/Conversion"].post({"name"=>params[:script], "status" => "Queued...", "percent" => 0, "file" => {"name" => url, "__type" => "File"}}.to_json, :content_type => 'application/json', :accept => :json)
+      response = site["/classes/Conversion"].post({"name"=>params[:script], "status" => "Queued...", "username" => @current_user.username, "percent" => 0, "file" => {"name" => url, "__type" => "File"}}.to_json, :content_type => 'application/json', :accept => :json)
       Resque.enqueue(Conversion, JSON.parse(response)["objectId"], @current_user.username)
       @conversion = Conversion.find(JSON.parse(response)["objectId"])
     rescue Exception => e
@@ -29,6 +29,7 @@ class ConversionsController < ApplicationController
 
 
   def index
+    @conversions = Conversion.where(:username => @current_user.username).order('-createdAt')
   end
 
   def status
