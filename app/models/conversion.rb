@@ -81,9 +81,7 @@ class Conversion < ParseResource::Base
 
     #try matching with "CHARACTER:"
     begin
-      p text.encoding
-      p text.force_encoding 'utf-8'
-      characters, lines = ScriptParser.fill_lines(text, /\p{Lu}+([ ]||[-]|[:]|[.])/u)
+      characters, lines = ScriptParser.fill_lines(text, /[A-Z]{3,}+([ ]||[-]|[:]|[.])/)
       #characters, lines = ScriptParser.fill_lines(text.force_encoding("UTF-8"), /\P{Ll}{3,}+([ ]|[-]|[:]|[.])/)
     rescue Exception => e
       p e.message
