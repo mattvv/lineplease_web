@@ -1,0 +1,17 @@
+%legend.center Conversions
+%p
+  Conversions are currently in beta! This is a list of your active conversions. Please email
+  %a{:href => "mailto:feedback@lineplea.se"}feedback@lineplea.se
+  with feedback
+  %br/
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th Script Name
+    %th Status
+    %th Percent Converted
+  - @conversions.each do |conversion|
+    %tr
+      %td= conversion.name
+      %td= conversion.status
+      %td= "%#{conversion.percent}"
