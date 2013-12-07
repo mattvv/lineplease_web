@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Conversion < ParseResource::Base
   @queue = :default
   fields :name, :scriptId, :file, :percent, :error
