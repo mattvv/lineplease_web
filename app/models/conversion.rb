@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class Conversion < ParseResource::Base
   @queue = :default
   fields :name, :scriptId, :file, :percent, :error
@@ -84,7 +82,7 @@ class Conversion < ParseResource::Base
 
     #try matching with "CHARACTER:"
     begin
-      characters, lines = ScriptParser.fill_lines(text.encode("iso-8859-1").force_encoding("utf-8"), /\p{Lu}+([ ]||[-]|[:]|[.])/u)
+      characters, lines = ScriptParser.fill_lines(text.encode("utf-8"), /\p{Lu}+([ ]||[-]|[:]|[.])/u)
       #characters, lines = ScriptParser.fill_lines(text.force_encoding("UTF-8"), /\P{Ll}{3,}+([ ]|[-]|[:]|[.])/)
     rescue Exception => e
       p e.message
