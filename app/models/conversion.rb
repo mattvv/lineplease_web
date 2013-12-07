@@ -81,7 +81,8 @@ class Conversion < ParseResource::Base
 
     #try matching with "CHARACTER:"
     begin
-      characters, lines = ScriptParser.fill_lines(text, /[A-Z]{3,}+([ ][-]|[:]|[.])/)
+      #characters, lines = ScriptParser.fill_lines(text, /[A-Z]{3,}+([ ]|[  ]|[-]|[:]|[.])/)
+      characters, lines = ScriptParser.fill_lines(text, /\P{Ll}{3,}+([ ]|[  ]|[-]|[:]|[.])/)
     rescue Exception => e
       p e.message
     end
@@ -144,6 +145,11 @@ class Conversion < ParseResource::Base
           lines << clean_line(matched[0]) unless characters.size == 0
           character = matched[1].strip
           characters << clean_character(character)
+      end
+
+      if characters.count == 0
+        # we have no characters, lets be a little more loose on the conversion!
+
       end
 
       return characters, lines
