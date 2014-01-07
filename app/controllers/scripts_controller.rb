@@ -22,7 +22,7 @@ class ScriptsController < ApplicationController
     #todo: use associations here
     #@lines = @script.lines
 
-    @lines = Line.where(:scriptId => @script.id).order(:position).all
+    @lines = Line.where(:scriptId => @script.id).order('position').all
 
     @characters = []
     @lines.each do |line|
