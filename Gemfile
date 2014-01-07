@@ -18,6 +18,7 @@ gem 'mysql'
 # in production environments by default.
 group :assets do
   gem 'less-rails'
+  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'

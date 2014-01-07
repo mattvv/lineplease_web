@@ -127,6 +127,11 @@ GEM
       vegas (~> 0.1.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    sass (3.2.13)
+    sass-rails (3.2.6)
+      railties (~> 3.2.0)
+      sass (>= 3.1.10)
+      tilt (~> 1.3)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -176,6 +181,7 @@ DEPENDENCIES
   rails (= 3.2.16)
   resque
   rest-client
+  sass-rails
   therubyracer
   turn
   twitter-bootstrap-rails
