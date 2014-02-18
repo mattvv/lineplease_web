@@ -4,7 +4,11 @@ class Conversion < ParseResource::Base
 
   def self.perform(objectId, username)
     p "Getting conversoin #{objectId}"
-    @conversion = Conversion.find(objectId)
+begin
+    @conversion = Conversion.where('objectId' => objectId).first
+rescue
+  puts "Error #{$!}"
+end
     p "getting resource #{SITE} #{APPLICATION_ID} #{MASTER_KEY}"
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     p "got site #{site}"
