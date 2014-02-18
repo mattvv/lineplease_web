@@ -8,7 +8,7 @@ begin
     @conversion = Conversion.find(objectId)
 rescue Exception => e
   puts "error #{e.message}"
-  puts "stacktrace: #{e.backtrace}"
+  puts "stacktrace: #{e.backtrace.join("\n")}"
 end
     p "getting resource #{SITE} #{APPLICATION_ID} #{MASTER_KEY}"
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
