@@ -1,3 +1,5 @@
+require "resque_web"
+
 Lineplease::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
@@ -23,6 +25,8 @@ Lineplease::Application.routes.draw do
   resources :lines
 
   match "/lines/update_position" => "lines#update_position"
+
+  mount ResqueWeb::Engine => "/resque_web"
 
   root :to => "home#index"
 end

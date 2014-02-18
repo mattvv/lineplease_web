@@ -29,6 +29,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'jquery-rails'
 gem 'resque'
+gem 'resque-web', require: 'resque_web'
 
 gem 'pakunok' #jqueryui
 
