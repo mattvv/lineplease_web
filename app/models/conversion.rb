@@ -8,6 +8,8 @@ class Conversion < ParseResource::Base
     response = site["/classes/Conversion"].get({:params => {:where => {"objectId" => objectId }.to_json}})
     file = JSON.parse(response)["results"].first["file"]["name"]
 
+    p "downloading file #{file}"
+
     shortname = File.basename(file)
     pathname = "/opt/scripts/"+shortname
 
