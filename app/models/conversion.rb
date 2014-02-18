@@ -56,6 +56,7 @@ class Conversion < ParseResource::Base
       pages = 0
       length.times do |index|
         current_page = index + 1
+	shortname = shortname[0,shortname.length-1] if shortname[shortname.length-1,shortname.length] == "x"
         p "Opening " + shortname[0, shortname.length-4] + "_#{current_page}.txt"
         page = File.open(shortname[0, shortname.length-4] + "_#{current_page}.txt", 'rb')
         #todo fix the page extraction here:
@@ -145,10 +146,10 @@ class Conversion < ParseResource::Base
 
       matched = text.partition(regex)
       char = clean_character(matched[1])
-      characters << char unless char == "IN" or char.size <= 2
+      characters << char unless char == "IN" or char.nil? or char.size < 2
       until matched[2] == ""
         matched = matched[2].partition(regex)
-          lines << clean_line(matched[0]) unless characters.size == 0
+          lines << clean_line(matched[0]) unless characters.nil? or characters.size == 0
           character = matched[1].strip
           characters << clean_character(character)
       end
