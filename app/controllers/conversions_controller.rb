@@ -1,5 +1,5 @@
 class ConversionsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :except => :enqueue
 
   def new
 
@@ -21,6 +21,12 @@ class ConversionsController < ApplicationController
     end
 
     render :show
+  end
+
+  def enqueue
+    Resque.enqueue(Conversion, params["conversionId"], params["username"])
+
+    render :json => { 'status' => 'queued' }
   end
 
   def show

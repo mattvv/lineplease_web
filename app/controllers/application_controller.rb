@@ -5,13 +5,20 @@ class ApplicationController < ActionController::Base
   private
 
   def parse_facebook_cookies
-   @facebook_cookies ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
-   unless @facebook_cookies.nil? or !!@current_user
-    unless @facebook_cookies['user_id'].blank? or @facebook_cookies['access_token'].blank? or @facebook_cookies['expires'].blank?
-      us = User.authenticate_with_facebook(@facebook_cookies['user_id'], @facebook_cookies['access_token'], @facebook_cookies['expires'])
-      session[:user_id] = us if us
+   begin
+     unless @facebook_cookies
+      oauth = Koala::Facebook::OAuth.new('192662437476636', '8efccd671acb78035fad6936ea480318')
+      @facebook_cookies = oauth.get_user_info_from_cookies(cookies)
+     end
+     unless @facebook_cookies.nil? or !!@current_user
+      unless @facebook_cookies['user_id'].blank? or @facebook_cookies['access_token'].blank? or @facebook_cookies['expires'].blank?
+        us = User.authenticate_with_facebook(@facebook_cookies['user_id'], @facebook_cookies['access_token'], @facebook_cookies['expires'])
+        session[:user_id] = us if us
+      end
+     end
+    rescue Koala::Facebook::OAuthTokenRequestError
+      @facebook_cookies = nil
     end
-   end
   end
 
   def current_user

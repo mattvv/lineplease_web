@@ -36,8 +36,3 @@
     .form-actions
       = submit_tag "Add Script", :class => "btn btn-primary"
       = link_to "Import Script", new_conversion_path, :class => "btn btn-inverse", :id => "import-script"
-
-:javascript
-  $(document).ready(function() {
-    $('#import-script').popover({title: "Open Beta", content: "Import scripts is currently in Open Beta - Please provide feedback to <a href=\"mailto:feedback@lineplea.se\">feedback@lineplea.se</a>"});
-  });
