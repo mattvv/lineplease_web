@@ -15,9 +15,10 @@ end
     p "got site #{site}"
     response = site["/classes/Conversion"].get({:params => {:where => {"objectId" => objectId }.to_json}})
     p "calling out to get the conversionw ith objectID #{objectId}"
+
     file = JSON.parse(response)["results"].first["file"]["name"]
 
-    p "downloading file #{file}"
+    p "downloading file #{JSON.parse(response)["results"].first["file"]}"
 
     shortname = File.basename(file)
     pathname = "/opt/scripts/"+shortname
