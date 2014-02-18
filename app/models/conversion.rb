@@ -3,8 +3,9 @@ class Conversion < ParseResource::Base
   fields :name, :scriptId, :file, :percent, :error
 
   def self.perform(objectId, username)
-    p "Getting conversoin"
+    p "Getting conversoin #{objectId}"
     @conversion = Conversion.find(objectId)
+    p "getting resource #{SITE} #{APPLICATION_ID} #{MASTER_KEY}"
     site = RestClient::Resource.new SITE, APPLICATION_ID, MASTER_KEY
     p "got site #{site}"
     response = site["/classes/Conversion"].get({:params => {:where => {"objectId" => objectId }.to_json}})
