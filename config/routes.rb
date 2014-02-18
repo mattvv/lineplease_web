@@ -17,6 +17,7 @@ Lineplease::Application.routes.draw do
   resources :conversions do
     collection do
       post 'status'
+      get 'enqueue'
     end
   end
   resources :lines
