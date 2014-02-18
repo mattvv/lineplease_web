@@ -6,7 +6,7 @@ gem 'rails', '3.2.16'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem "parse_resource", :git => "git://github.com/mattvv/parse_resource.git"
+gem "parse_resource"
 gem 'rest-client'
 gem 'docsplit'
 gem 'pg'

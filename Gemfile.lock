@@ -1,13 +1,3 @@
-GIT
-  remote: git://github.com/mattvv/parse_resource.git
-  revision: a27a20be1027e5dddbd16199e35b586164f8bc67
-  specs:
-    parse_resource (1.7.3)
-      activemodel
-      activesupport
-      json
-      rest-client
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -86,6 +76,11 @@ GEM
       execjs
       rails (>= 3.1.0)
       sprockets (>= 2.0.0)
+    parse_resource (1.8.0)
+      activemodel
+      activesupport
+      json
+      rest-client
     pg (0.17.1)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -182,7 +177,7 @@ DEPENDENCIES
   less-rails
   mysql
   pakunok
-  parse_resource!
+  parse_resource
   pg
   rails (= 3.2.16)
   resque
