@@ -67,6 +67,7 @@ end
         page = File.open(shortname[0, shortname.length-4] + "_#{current_page}.txt", 'rb')
         #todo fix the page extraction here:
         actual_page = page.read
+        actual_page.chars.select{|i| i.valid_encoding?}.join
         p "read page"
         pagesarray << actual_page
         p "Adding page to array"
