@@ -125,6 +125,7 @@ end
       p "index is #{index}"
       line = lines[index]
       unless line.nil? or char.nil?
+        line = line.force_encoding('UTF-8')
         line.gsub!(/[^0-9a-z ]/i, '')
         char.gsub!(/[^0-9a-z ]/i, '')
         p "parsing line #{line}"
