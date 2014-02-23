@@ -72,6 +72,7 @@ end
         p "Adding page to array"
         page.close
         p "page #{pages} is #{actual_page}"
+        p "Encoding is #{actual_page.encoding}"
         p "closed page #{pages}"
         pages = pages + 1
       end
