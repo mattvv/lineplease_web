@@ -97,7 +97,7 @@ end
 
     #try matching with "CHARACTER:"
     begin
-      characters, lines = ScriptParser.fill_lines(text.force_encoding("UTF-8"), /[A-Z]{3,}+([ ]||[-]|[:]|[.])/)
+      characters, lines = ScriptParser.fill_lines(text, /[A-Z]{3,}+([ ]||[-]|[:]|[.])/)
       #characters, lines = ScriptParser.fill_lines(text.force_encoding("UTF-8"), /\P{Ll}{3,}+([ ]|[-]|[:]|[.])/)
     rescue Exception => e
       p e.message
@@ -151,6 +151,7 @@ end
 
   class ScriptParser
     def self.fill_lines(text, regex)
+      p "filling lines from #{text}"
       characters = []
       lines = []
 
