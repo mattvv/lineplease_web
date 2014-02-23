@@ -126,9 +126,9 @@ end
       line = lines[index]
       unless line.nil? or char.nil?
         line = line.force_encoding('UTF-8')
-        p "got line from array #{line}"
-        line.gsub!(/[^0-9a-z ]/i, '')
-        p "after gsub in the character parser #{line}"
+        #p "got line from array #{line}"
+        #line.gsub!(/[^0-9a-z ]/i, '')
+        #p "after gsub in the character parser #{line}"
         char.gsub!(/[^0-9a-z ]/i, '')
         p "parsing line #{line}"
         l = Line.new
