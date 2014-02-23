@@ -126,7 +126,9 @@ end
       line = lines[index]
       unless line.nil? or char.nil?
         line = line.force_encoding('UTF-8')
+        p "got line from array #{line}"
         line.gsub!(/[^0-9a-z ]/i, '')
+        p "after gsub in the character parser #{line}"
         char.gsub!(/[^0-9a-z ]/i, '')
         p "parsing line #{line}"
         l = Line.new
@@ -179,15 +181,11 @@ end
     end
 
     def self.clean_line(line)
-      p "cleaning line #{line}"
       line = line.strip
-      p "line stripped #{line}"
       line = line.gsub(/\([^)]*\)/, "")
-      p "line gsubbed #{line}"
       until line[0, 1] != "\n" and line[0, 1] != "." and line[0, 1] != " "
         line = line[1, line.length]
       end
-      p "line until looped #{line}"
       line = " " if line.nil?
       line
     end
