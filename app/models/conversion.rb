@@ -160,7 +160,6 @@ end
       characters << char unless char == "IN" or char.nil? or char.size < 2
       until matched[2] == ""
         matched = matched[2].partition(regex)
-          p "cleaning line #{matched[0]}"
           lines << clean_line(matched[0]) unless characters.nil? or characters.size == 0
           character = matched[1].strip
           characters << clean_character(character)
@@ -180,11 +179,15 @@ end
     end
 
     def self.clean_line(line)
+      p "cleaning line #{line}"
       line = line.strip
+      p "line stripped #{line}"
       line = line.gsub(/\([^)]*\)/, "")
+      p "line gsubbed #{line}"
       until line[0, 1] != "\n" and line[0, 1] != "." and line[0, 1] != " "
         line = line[1, line.length]
       end
+      p "line until looped #{line}"
       line = " " if line.nil?
       line
     end
