@@ -160,6 +160,7 @@ end
       characters << char unless char == "IN" or char.nil? or char.size < 2
       until matched[2] == ""
         matched = matched[2].partition(regex)
+          p "cleaning line #{matched[0]}"
           lines << clean_line(matched[0]) unless characters.nil? or characters.size == 0
           character = matched[1].strip
           characters << clean_character(character)
