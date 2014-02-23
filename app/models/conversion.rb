@@ -45,7 +45,7 @@ end
     @conversion.save
     begin
       length = Docsplit.extract_length(pathname)
-      length = 5 if length > 5
+      length = 25 if length > 25
       Docsplit.extract_text(pathname, :pages => 1..length, :output => "/opt/scripts/" + shortname[0, shortname.length-4])
     rescue Exception => e
       p e.message
