@@ -67,7 +67,7 @@ end
         page = File.open(shortname[0, shortname.length-4] + "_#{current_page}.txt", 'rb')
         #todo fix the page extraction here:
         actual_page = page.read
-        actual_page = actual_page.chars.select{|i| i.valid_encoding?}.join
+        actual_page = actual_page..encode('UTF-16le', :invalid => :replace, :replace => '').encode('UTF-8')
         p "read page"
         pagesarray << actual_page
         p "Adding page to array"
