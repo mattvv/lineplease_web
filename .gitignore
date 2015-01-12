@@ -7,3 +7,5 @@ tmp/
 .idea/workspace.xml
 config/parse_resource.yml
 config/initializers/facebook.rb
+config/initializers/resque.rb
+config/initializers/secret_token.rb
